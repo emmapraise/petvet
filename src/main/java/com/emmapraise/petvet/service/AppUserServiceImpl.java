@@ -14,6 +14,7 @@ public class AppUserServiceImpl implements AppUserSerivce{
 
     @Override
     public List<AppUser> getUsers(){
+        log.info("Retrieving all users");
         return appUserRepo.findAll();
     }
 }
