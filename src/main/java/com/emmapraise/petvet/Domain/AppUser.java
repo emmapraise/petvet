@@ -15,7 +15,8 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String first_name;
+    private String last_name;
     @Column(unique = true)
     private String email;
     private String password;
