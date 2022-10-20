@@ -17,4 +17,15 @@ public class AppUserServiceImpl implements AppUserSerivce{
         log.info("Retrieving all users");
         return appUserRepo.findAll();
     }
+
+    @Override
+    public AppUser saveUser(AppUser appUser){
+        log.info("Saving new user {} {} into the database", appUser.getFirst_name(), appUser.getLast_name());
+        return appUserRepo.save(appUser);
+    }
+    @Override
+    public AppUser getUser(String email){
+        log.info("Retrieving user {} from the database", email);
+        return appUserRepo.findByEmail(email);
+    }
 }
