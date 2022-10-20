@@ -27,11 +27,31 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public AppUser saveUser(AppUser appUser){
         log.info("Saving new user {} {} into the database", appUser.getFirst_name(), appUser.getLast_name());
+        Optional<AppUser> appUserOptional = appUserRepo.findByEmail(appUser.getEmail());
+        if (appUserOptional.isPresent()){
+            throw new IllegalStateException("Email taken");
+        }
         return appUserRepo.save(appUser);
     }
     @Override
-    public AppUser getUser(String email){
+    public Optional<AppUser> getUser(String email){
         log.info("Retrieving user {} from the database", email);
-        return appUserRepo.findByEmail(email);
+//        boolean exists = appUserRepo.existsByEmail(email);
+        Optional<AppUser> appUserOptional = appUserRepo.findByEmail(email);
+
+        if (appUserOptional.isPresent()){
+            return appUserOptional;
+        }
+        throw new IllegalStateException("User is not present");
+    }
+
+    public String deleteUser(String email){
+        log.info("Deleting User with email "+ email);
+        Optional<AppUser> appUserOptional = appUserRepo.findByEmail(email);
+        if (appUserOptional.isPresent()){
+            appUserRepo.deleteByEmail(email);
+            return "User deleted";
+        }
+        throw new IllegalStateException("User is not present");
     }
 }

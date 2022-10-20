@@ -29,8 +29,12 @@ public class AppUserController {
     }
 
     @GetMapping("/user/{email}")
-    public ResponseEntity<AppUser> getUser(@PathVariable("email") String email){
+    public ResponseEntity<Optional<AppUser>> getUser(@PathVariable("email") String email){
         return ResponseEntity.ok().body(appUserService.getUser(email));
+    }
+    @DeleteMapping("/user/{email}")
+    public ResponseEntity<String> deleteUser(@PathVariable("email") String email){
+        return ResponseEntity.ok().body(appUserService.deleteUser(email));
     }
 
 }

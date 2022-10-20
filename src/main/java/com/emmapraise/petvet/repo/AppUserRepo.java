@@ -3,6 +3,9 @@ package com.emmapraise.petvet.repo;
 import com.emmapraise.petvet.Domain.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface AppUserRepo extends JpaRepository<AppUser, Long> {
-    AppUser findByEmail(String email);
+    Optional<AppUser> findByEmail(String email);
+    void deleteByEmail(String email);
 }

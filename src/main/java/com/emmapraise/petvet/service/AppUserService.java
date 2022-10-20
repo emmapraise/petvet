@@ -3,13 +3,14 @@ package com.emmapraise.petvet.service;
 import com.emmapraise.petvet.Domain.AppUser;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AppUserService {
     List<AppUser> getUsers();
 
     AppUser saveUser(AppUser appUser);
 
-    AppUser getUser(String email);
+    Optional<AppUser> getUser(String email);
 
-//    AppUser deleteUser(String email);
+    String deleteUser(String email);
 }
