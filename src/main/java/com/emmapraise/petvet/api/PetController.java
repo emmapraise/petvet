@@ -27,4 +27,9 @@ public class PetController {
     public ResponseEntity<Pet_Category> addPetCategory(@RequestBody Pet_Category pet_category){
         return ResponseEntity.ok().body(petCategoryService.addPetCategory(pet_category));
     }
+
+    @GetMapping("/pet_categories")
+    public ResponseEntity<List<Pet_Category>> getPetCategories(){
+        return ResponseEntity.ok().body(petCategoryService.getPetCategories());
+    }
 }

@@ -24,6 +24,6 @@ public class PetCategoryServiceImpl implements PetCategoryService{
 
     @Override
     public List<Pet_Category> getPetCategories() {
-        return null;
+        return petCategoryRepo.findAll();
     }
 }
