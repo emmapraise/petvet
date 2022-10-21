@@ -18,4 +18,10 @@ public class PetServiceImpl implements PetService{
         log.info("Getting all pets");
         return petRepo.findAll();
     }
+
+    @Override
+    public Pets addPet(Pets pets) {
+        log.info("Saving pets");
+        return null;
+    }
 }
