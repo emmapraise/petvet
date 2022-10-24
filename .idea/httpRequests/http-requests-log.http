@@ -1,3 +1,96 @@
+GET http://localhost:8282/api/user/emma2@emma.com
+
+<> f-3.txt
+
+###
+
+POST http://localhost:8282/api/user/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "463463"
+}
+
+<> 2022-10-24T142649.201.json
+
+###
+
+POST http://localhost:8282/api/user/save
+content-type: application/json
+
+{
+  "email": "emma@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "253346252"
+}
+
+<> 2022-10-24T142623.201.json
+
+###
+
+POST http://localhost:8282/api/user/save
+content-type: application/json
+
+{
+  "email": "emma@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "253346252"
+}
+
+<> 2022-10-24T142413.500.json
+
+###
+
+GET http://localhost:8282/api/user/emma2@emma.com
+
+<> f-2.txt
+
+###
+
+GET http://localhost:8282/api/user/emma2@emma.com
+
+<> f-1.txt
+
+###
+
+POST http://localhost:8282/api/user/save
+content-type: application/json
+
+{
+  "email": "emma@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "253346252"
+}
+
+<> 2022-10-24T142058.201.json
+
+###
+
+POST http://localhost:8282/api/user/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "253252"
+}
+
+<> 2022-10-24T141521.500.json
+
+###
+
 GET http://localhost:8080/api/pet_categories
 
 <> 2022-10-21T095737.200.json
@@ -354,72 +447,6 @@ content-type: application/json
 }
 
 <> 2022-10-20T142822.201.json
-
-###
-
-GET http://localhost:8080/api/user/emma@emma.com
-
-<> f-17.txt
-
-###
-
-POST http://localhost:8080/api/users/save
-content-type: application/json
-
-{
-  "email": "emma@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "32525"
-}
-
-<> 2022-10-20T142746.201.json
-
-###
-
-GET http://localhost:8080/api/user/emma@emma.com
-
-<> f-16.txt
-
-###
-
-GET http://localhost:8080/api/user/emma@emma.com
-
-<> f-15.txt
-
-###
-
-GET http://localhost:8080/api/user/emma@emma.com
-
-<> f-14.txt
-
-###
-
-GET http://localhost:8080/api/user/emma@emma.com
-
-<> f-13.txt
-
-###
-
-POST http://localhost:8080/api/users/save
-content-type: application/json
-
-{
-  "email": "emma@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "32525"
-}
-
-<> 2022-10-20T142338.201.json
-
-###
-
-GET http://localhost:8080/api/user/emma@emma.com
-
-<> f-12.txt
 
 ###
 
