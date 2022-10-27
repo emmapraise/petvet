@@ -24,8 +24,7 @@ public class Pets {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "pet_category_id")
     private Pet_Category pet_category;
-
-//    @JsonIgnore
+    
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "app_user_id", nullable = false)
     private AppUser appUser;
