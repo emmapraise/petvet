@@ -1,7 +1,7 @@
 package com.emmapraise.petvet.api;
 
-import com.emmapraise.petvet.Domain.Pet_Category;
-import com.emmapraise.petvet.Domain.Pets;
+import com.emmapraise.petvet.entity.Pet_Category;
+import com.emmapraise.petvet.entity.Pets;
 import com.emmapraise.petvet.service.PetCategoryService;
 import com.emmapraise.petvet.service.PetService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +32,12 @@ public class PetController {
     @DeleteMapping("/pet/{petId}")
     public ResponseEntity<String> deletePet(@PathVariable(value = "petId") long petId){
         return ResponseEntity.ok().body(petService.deletePet(petId));
+    }
+
+    @PutMapping("/pet/{petId}")
+    public ResponseEntity<Pets> updatePet(@PathVariable(value = "petId") long petId,
+                                          @RequestBody Pets pets){
+        return ResponseEntity.ok().body(petService.updatePet(petId, pets));
     }
 
     @PostMapping("/pet_category")

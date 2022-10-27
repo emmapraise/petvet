@@ -1,6 +1,6 @@
 package com.emmapraise.petvet.api;
 
-import com.emmapraise.petvet.Domain.AppUser;
+import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.service.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

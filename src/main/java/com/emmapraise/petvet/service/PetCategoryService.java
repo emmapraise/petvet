@@ -1,6 +1,6 @@
 package com.emmapraise.petvet.service;
 
-import com.emmapraise.petvet.Domain.Pet_Category;
+import com.emmapraise.petvet.entity.Pet_Category;
 
 import java.util.List;
 

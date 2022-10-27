@@ -1,4 +1,4 @@
-package com.emmapraise.petvet.Domain;
+package com.emmapraise.petvet.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -14,9 +14,9 @@ public class Appointment {
     private Long id;
     @Column(unique = true)
     private String uuid = UUID.randomUUID().toString();
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     private AppUser client = new AppUser();
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     private AppUser clinic = new AppUser();
     private Date date;
     private Double price;

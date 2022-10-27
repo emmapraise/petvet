@@ -1,9 +1,6 @@
-package com.emmapraise.petvet.Domain;
+package com.emmapraise.petvet.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,12 +9,14 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Setter
+@Getter
 @Table(name = "pet_categories")
 public class Pet_Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "pet_category", cascade = CascadeType.ALL, orphanRemoval = true)

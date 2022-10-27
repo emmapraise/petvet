@@ -1,7 +1,8 @@
-package com.emmapraise.petvet.service;
+package com.emmapraise.petvet.service.impl;
 
-import com.emmapraise.petvet.Domain.Pet_Category;
+import com.emmapraise.petvet.entity.Pet_Category;
 import com.emmapraise.petvet.repo.PetCategoryRepo;
+import com.emmapraise.petvet.service.PetCategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @Transactional
-public class PetCategoryServiceImpl implements PetCategoryService{
+public class PetCategoryServiceImpl implements PetCategoryService {
     private final PetCategoryRepo petCategoryRepo;
 
     @Override

@@ -1,6 +1,6 @@
 package com.emmapraise.petvet.service;
 
-import com.emmapraise.petvet.Domain.AppUser;
+import com.emmapraise.petvet.entity.AppUser;
 
 import java.util.List;
 import java.util.Optional;
