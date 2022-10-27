@@ -22,9 +22,9 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.getUsers());
     }
 
-    @PostMapping("/users/save")
+    @PostMapping("/user/save")
     public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/save").toUriString());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
         return ResponseEntity.created(uri).body(appUserService.saveUser(appUser));
     }
 

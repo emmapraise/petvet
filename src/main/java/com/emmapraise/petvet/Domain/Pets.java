@@ -16,7 +16,7 @@ public class Pets {
     private Long id;
     private String name;
     private String eyeColor;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne()
     private Pet_Category pet_category = new Pet_Category();
     private Boolean isActive = true;
 }

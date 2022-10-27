@@ -1,0 +1,425 @@
+GET http://localhost:8080/api/pet_categories
+
+<> 2022-10-21T095737.200.json
+
+###
+
+POST http://localhost:8080/api/pet_category
+content-type: application/json
+
+{
+  "name": "Cat"
+}
+
+<> 2022-10-21T095732.200.json
+
+###
+
+POST http://localhost:8080/api/pet_category
+content-type: application/json
+
+{
+  "name": "Dog"
+}
+
+<> 2022-10-21T095724.200.json
+
+###
+
+GET http://localhost:8080/api/pet_categories
+
+<> 2022-10-21T095127.200.json
+
+###
+
+GET http://localhost:8080/api/pet_categories
+
+<> 2022-10-21T094350.404.json
+
+###
+
+GET http://localhost:8080/api/pet_categories
+
+<> 2022-10-21T094348.404.json
+
+###
+
+GET http://localhost:8080/api/pet_categories
+
+<> 2022-10-21T094311.404.json
+
+###
+
+GET http://localhost:8080/api/pet_categories
+
+<> 2022-10-21T094309.404.json
+
+###
+
+GET http://localhost:8080/api/pet_categories
+
+<> 2022-10-21T094300.404.json
+
+###
+
+GET http://localhost:8080/api/pets
+
+<> 2022-10-21T093230.200.json
+
+###
+
+GET http://localhost:8080/api/pets
+
+<> 2022-10-21T093228.200.json
+
+###
+
+POST http://localhost:8080/api/user/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "253252"
+}
+
+<> 2022-10-21T093128.201.json
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "253252"
+}
+
+<> 2022-10-21T093106.404.json
+
+###
+
+POST http://localhost:8080/api/pet_category
+content-type: application/json
+
+{
+  "name": "Dog"
+}
+
+<> 2022-10-21T093045.200.json
+
+###
+
+POST http://localhost:8080/api/pet_category
+content-type: application/json
+
+{
+  "name": "Dog"
+}
+
+<> 2022-10-21T092639.200.json
+
+###
+
+POST http://localhost:8080/api/pet_category
+content-type: application/json
+
+{
+  "name": "Dog"
+}
+
+<> 2022-10-21T092055.200.json
+
+###
+
+POST http://localhost:8080/api/pet_category
+content-type: application/json
+
+{
+  "name": "Dog"
+}
+
+<> 2022-10-21T091852.200.json
+
+###
+
+GET http://localhost:8080/api/pets
+
+<> 2022-10-21T082027.200.json
+
+###
+
+GET http://localhost:8080/api/users
+
+<> 2022-10-20T224118.200.json
+
+###
+
+GET http://localhost:8080/api/users
+
+<> 2022-10-20T224116.200.json
+
+###
+
+DELETE http://localhost:8080/api/user/emma2@emma.com
+
+<> f.txt
+
+###
+
+GET http://localhost:8080/api/users
+
+<> 2022-10-20T223502.200.json
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "253252"
+}
+
+<> 2022-10-20T223449.201.json
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "2532252"
+}
+
+<> 2022-10-20T223436.201.json
+
+###
+
+DELETE http://localhost:8080/api/user/emma2@emma.com
+
+<> f-26.txt
+
+###
+
+GET http://localhost:8080/api/users
+
+<> 2022-10-20T223305.200.json
+
+###
+
+GET http://localhost:8080/api/users
+
+<> 2022-10-20T223258.200.json
+
+###
+
+DELETE http://localhost:8080/api/user/emma2@emma.com
+
+<> f-25.txt
+
+###
+
+GET http://localhost:8080/api/user/emma2@emma.com
+
+<> f-24.txt
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "2532252"
+}
+
+<> 2022-10-20T223042.201.json
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "dsdsgs"
+}
+
+<> 2022-10-20T223018.201.json
+
+###
+
+GET http://localhost:8080/api/user/emma2@emma.com
+
+<> f-23.txt
+
+###
+
+GET http://localhost:8080/api/user/emma2@emma.com
+
+<> f-22.txt
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "dsdsgs"
+}
+
+<> 2022-10-20T172038.201.json
+
+###
+
+GET http://localhost:8080/api/user/emma2@emma.com
+
+###
+
+GET http://localhost:8080/api/user/emma2@emma.com
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "dsdsgs"
+}
+
+<> 2022-10-20T171526.201.json
+
+###
+
+GET http://localhost:8080/api/user/emma2@emma.com
+
+<> f-21.txt
+
+###
+
+GET http://localhost:8080/api/user/emma2@emma.com
+
+<> f-20.txt
+
+###
+
+GET http://localhost:8080/api/user/emma@emma.com
+
+<> f-19.txt
+
+###
+
+GET http://localhost:8080/api/user/emma@emma.com
+
+<> f-18.txt
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma2@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "dsdsgs"
+}
+
+<> 2022-10-20T142822.201.json
+
+###
+
+GET http://localhost:8080/api/user/emma@emma.com
+
+<> f-17.txt
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "32525"
+}
+
+<> 2022-10-20T142746.201.json
+
+###
+
+GET http://localhost:8080/api/user/emma@emma.com
+
+<> f-16.txt
+
+###
+
+GET http://localhost:8080/api/user/emma@emma.com
+
+<> f-15.txt
+
+###
+
+GET http://localhost:8080/api/user/emma@emma.com
+
+<> f-14.txt
+
+###
+
+GET http://localhost:8080/api/user/emma@emma.com
+
+<> f-13.txt
+
+###
+
+POST http://localhost:8080/api/users/save
+content-type: application/json
+
+{
+  "email": "emma@emma.com",
+  "first_name": "Emmanuel",
+  "last_name": "Praise",
+  "password": "12345678",
+  "phone": "32525"
+}
+
+<> 2022-10-20T142338.201.json
+
+###
+
+GET http://localhost:8080/api/user/emma@emma.com
+
+<> f-12.txt
+
+###
+
