@@ -9,9 +9,11 @@ import java.util.List;
 public interface PetService {
     PetDto addPet(long userId, String categoryName, PetDto petDto);
 
+    PetDto getPet(long petId);
+
     String deletePet(long petId);
 
-    Pets updatePet(long petId, Pets pets);
+    PetDto updatePet(long petId, PetDto petDto);
 
     List<Pets> getPets();
 }

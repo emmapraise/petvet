@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,8 +28,13 @@ public class PetController {
     @PostMapping("/owner/{userId}/category/{categoryName}/pet")
     public ResponseEntity<PetDto> addPet(@PathVariable(value = "userId") long userId,
                                        @PathVariable(value = "categoryName") String categoryName,
-                                       @RequestBody PetDto petDto) {
+                                       @Valid @RequestBody PetDto petDto) {
         return ResponseEntity.ok().body(petService.addPet(userId, categoryName, petDto));
+    }
+
+    @GetMapping("/pet/{petId}")
+    public ResponseEntity<PetDto> getPet(@PathVariable(value = "petId") long petId){
+        return ResponseEntity.ok().body(petService.getPet(petId));
     }
     @DeleteMapping("/pet/{petId}")
     public ResponseEntity<String> deletePet(@PathVariable(value = "petId") long petId){
@@ -36,9 +42,9 @@ public class PetController {
     }
 
     @PutMapping("/pet/{petId}")
-    public ResponseEntity<Pets> updatePet(@PathVariable(value = "petId") long petId,
-                                          @RequestBody Pets pets){
-        return ResponseEntity.ok().body(petService.updatePet(petId, pets));
+    public ResponseEntity<PetDto> updatePet(@PathVariable(value = "petId") long petId,
+                                         @Valid @RequestBody PetDto petDto){
+        return ResponseEntity.ok().body(petService.updatePet(petId, petDto));
     }
 
     @PostMapping("/pet_category")
