@@ -1,173 +1,281 @@
-GET http://localhost:8282/api/user/emma2@emma.com
+GET http://localhost:8282/api/pets
 
-<> f-3.txt
+<> 2022-10-27T121832.200.json
 
 ###
 
-POST http://localhost:8282/api/user/save
+GET http://localhost:8282/api/pets
+
+<> 2022-10-27T121357.500.json
+
+###
+
+GET http://localhost:8282/api/pets
+
+<> 2022-10-27T121210.200.json
+
+###
+
+GET http://localhost:8282/api/pets
+
+<> 2022-10-27T120349.200.json
+
+###
+
+GET http://localhost:8282/api/pet_categories
+
+<> 2022-10-27T120206.200.json
+
+###
+
+GET http://localhost:8282/api/pet_categories
+
+<> 2022-10-27T120122.200.json
+
+###
+
+GET http://localhost:8282/api/pets
+
+<> 2022-10-27T105653.200.json
+
+###
+
+POST http://localhost:8282/api/owner/1/category/Dog/pet
 content-type: application/json
 
 {
-  "email": "emma2@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "463463"
+  "eyeColor": "black",
+  "is_active": 1,
+  "name": "Jack"
 }
 
-<> 2022-10-24T142649.201.json
+<> 2022-10-27T104709.200.json
 
 ###
 
-POST http://localhost:8282/api/user/save
+POST http://localhost:8282/api/owner/1/category/Dog/pet
 content-type: application/json
 
 {
-  "email": "emma@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "253346252"
+  "eyeColor": "black",
+  "is_active": 1,
+  "name": "Jack"
 }
 
-<> 2022-10-24T142623.201.json
+<> 2022-10-27T103408.500.json
 
 ###
 
-POST http://localhost:8282/api/user/save
+POST http://localhost:8282/api/owner/1/category/Dog/pet
 content-type: application/json
 
 {
-  "email": "emma@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "253346252"
+  "eyeColor": "black",
+  "is_active": 1,
+  "name": "Jack"
 }
 
-<> 2022-10-24T142413.500.json
+<> 2022-10-27T103245.500.json
 
 ###
 
-GET http://localhost:8282/api/user/emma2@emma.com
-
-<> f-2.txt
-
-###
-
-GET http://localhost:8282/api/user/emma2@emma.com
-
-<> f-1.txt
-
-###
-
-POST http://localhost:8282/api/user/save
+POST http://localhost:8282/api/owner/1/category/Dog/pet
 content-type: application/json
 
 {
-  "email": "emma@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "253346252"
+  "eyeColor": "black",
+  "is_active": 1,
+  "name": "Jack",
+  "pet_category": 1
 }
 
-<> 2022-10-24T142058.201.json
+<> 2022-10-27T103210.400.json
 
 ###
 
-POST http://localhost:8282/api/user/save
+POST http://localhost:8282/api/owner/1/category/Dog/pet
 content-type: application/json
 
 {
-  "email": "emma2@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "253252"
+  "eyeColor": "black",
+  "is_active": 1,
+  "name": "Jack"
 }
 
-<> 2022-10-24T141521.500.json
+<> 2022-10-27T103131.500.json
 
 ###
 
-GET http://localhost:8080/api/pet_categories
+POST http://localhost:8282/api/owner/1/category/Dog/pet
+content-type: application/json
 
-<> 2022-10-21T095737.200.json
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-27T103011.500.json
 
 ###
 
-POST http://localhost:8080/api/pet_category
+POST http://localhost:8282/api/owner/1/category/Dog/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-27T102726.500.json
+
+###
+
+POST http://localhost:8282/api/owner/1/category/Dog/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-27T102035.500.json
+
+###
+
+POST http://localhost:8282/api/owner/1/category/Dog/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-27T101928.500.json
+
+###
+
+POST http://localhost:8282/api/owner/1/category/Dog/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-27T101830.500.json
+
+###
+
+POST http://localhost:8282/api/owner/1/category/Dog/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-27T100429.500.json
+
+###
+
+POST http://localhost:8282/api/owner/1/category/1/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-27T095936.500.json
+
+###
+
+POST http://localhost:8282/api/owner/1/category/1/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-27T095233.500.json
+
+###
+
+POST http://localhost:8282/api/owner/1/category/1/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack"
+}
+
+<> 2022-10-26T093359.500.json
+
+###
+
+POST http://localhost:8282/api/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack",
+  "app_user_id": 1,
+  "pet_category": 3
+}
+
+<> 2022-10-26T082400.400.json
+
+###
+
+POST http://localhost:8282/api/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": "1",
+  "name": "Jack",
+  "app_user_id": "1",
+  "pet_category": "3"
+}
+
+<> 2022-10-26T082311.400.json
+
+###
+
+POST http://localhost:8282/api/pet_category
 content-type: application/json
 
 {
   "name": "Cat"
 }
 
-<> 2022-10-21T095732.200.json
+<> 2022-10-26T082138.200.json
 
 ###
 
-POST http://localhost:8080/api/pet_category
+POST http://localhost:8282/api/pet_category
 content-type: application/json
 
 {
   "name": "Dog"
 }
 
-<> 2022-10-21T095724.200.json
+<> 2022-10-26T082041.200.json
 
 ###
 
-GET http://localhost:8080/api/pet_categories
-
-<> 2022-10-21T095127.200.json
-
-###
-
-GET http://localhost:8080/api/pet_categories
-
-<> 2022-10-21T094350.404.json
-
-###
-
-GET http://localhost:8080/api/pet_categories
-
-<> 2022-10-21T094348.404.json
-
-###
-
-GET http://localhost:8080/api/pet_categories
-
-<> 2022-10-21T094311.404.json
-
-###
-
-GET http://localhost:8080/api/pet_categories
-
-<> 2022-10-21T094309.404.json
-
-###
-
-GET http://localhost:8080/api/pet_categories
-
-<> 2022-10-21T094300.404.json
-
-###
-
-GET http://localhost:8080/api/pets
-
-<> 2022-10-21T093230.200.json
-
-###
-
-GET http://localhost:8080/api/pets
-
-<> 2022-10-21T093228.200.json
-
-###
-
-POST http://localhost:8080/api/user/save
+POST http://localhost:8282/api/user/save
 content-type: application/json
 
 {
@@ -175,103 +283,20 @@ content-type: application/json
   "first_name": "Emmanuel",
   "last_name": "Praise",
   "password": "12345678",
-  "phone": "253252"
+  "phone": "463636"
 }
 
-<> 2022-10-21T093128.201.json
+<> 2022-10-26T082020.201.json
 
 ###
 
-POST http://localhost:8080/api/users/save
-content-type: application/json
-
-{
-  "email": "emma2@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "253252"
-}
-
-<> 2022-10-21T093106.404.json
-
-###
-
-POST http://localhost:8080/api/pet_category
-content-type: application/json
-
-{
-  "name": "Dog"
-}
-
-<> 2022-10-21T093045.200.json
-
-###
-
-POST http://localhost:8080/api/pet_category
-content-type: application/json
-
-{
-  "name": "Dog"
-}
-
-<> 2022-10-21T092639.200.json
-
-###
-
-POST http://localhost:8080/api/pet_category
-content-type: application/json
-
-{
-  "name": "Dog"
-}
-
-<> 2022-10-21T092055.200.json
-
-###
-
-POST http://localhost:8080/api/pet_category
-content-type: application/json
-
-{
-  "name": "Dog"
-}
-
-<> 2022-10-21T091852.200.json
-
-###
-
-GET http://localhost:8080/api/pets
-
-<> 2022-10-21T082027.200.json
-
-###
-
-GET http://localhost:8080/api/users
-
-<> 2022-10-20T224118.200.json
-
-###
-
-GET http://localhost:8080/api/users
-
-<> 2022-10-20T224116.200.json
-
-###
-
-DELETE http://localhost:8080/api/user/emma2@emma.com
+GET http://localhost:8282/api/user/emma2@emma.com
 
 <> f.txt
 
 ###
 
-GET http://localhost:8080/api/users
-
-<> 2022-10-20T223502.200.json
-
-###
-
-POST http://localhost:8080/api/users/save
+POST http://localhost:8282/api/user/save
 content-type: application/json
 
 {
@@ -279,101 +304,87 @@ content-type: application/json
   "first_name": "Emmanuel",
   "last_name": "Praise",
   "password": "12345678",
-  "phone": "253252"
+  "phone": "463636"
 }
 
-<> 2022-10-20T223449.201.json
+<> 2022-10-26T072802.201.json
 
 ###
 
-POST http://localhost:8080/api/users/save
+POST http://localhost:8282/api/pet_category
 content-type: application/json
 
 {
-  "email": "emma@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "2532252"
+  "name": "Dog"
 }
 
-<> 2022-10-20T223436.201.json
+<> 2022-10-26T072738.200.json
 
 ###
 
-DELETE http://localhost:8080/api/user/emma2@emma.com
+GET http://localhost:8282/api/pets
 
-<> f-26.txt
-
-###
-
-GET http://localhost:8080/api/users
-
-<> 2022-10-20T223305.200.json
+<> 2022-10-26T065442.200.json
 
 ###
 
-GET http://localhost:8080/api/users
+GET http://localhost:8282/api/pet
 
-<> 2022-10-20T223258.200.json
-
-###
-
-DELETE http://localhost:8080/api/user/emma2@emma.com
-
-<> f-25.txt
+<> 2022-10-26T065057.405.json
 
 ###
 
-GET http://localhost:8080/api/user/emma2@emma.com
+GET http://localhost:8282/api/pet
 
-<> f-24.txt
+<> 2022-10-26T065033.405.json
 
 ###
 
-POST http://localhost:8080/api/users/save
+POST http://localhost:8282/api/pet
+
+<> 2022-10-26T065007.400.json
+
+###
+
+POST http://localhost:8282/api/pet
+
+<> 2022-10-26T064953.400.json
+
+###
+
+POST http://localhost:8282/api/pet
+
+<> 2022-10-26T064932.400.json
+
+###
+
+POST http://localhost:8282/api/pet
 content-type: application/json
 
 {
-  "email": "emma@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "2532252"
+  "eye_color": "black",
+  "is_active": "1",
+  "name": "Jack",
+  "app_user_id": "1",
+  "pet_category": "3"
 }
 
-<> 2022-10-20T223042.201.json
+<> 2022-10-26T064438.400.json
 
 ###
 
-POST http://localhost:8080/api/users/save
+POST http://localhost:8282/api/pet_category
 content-type: application/json
 
 {
-  "email": "emma2@emma.com",
-  "first_name": "Emmanuel",
-  "last_name": "Praise",
-  "password": "12345678",
-  "phone": "dsdsgs"
+  "name": "Dog"
 }
 
-<> 2022-10-20T223018.201.json
+<> 2022-10-26T064327.200.json
 
 ###
 
-GET http://localhost:8080/api/user/emma2@emma.com
-
-<> f-23.txt
-
-###
-
-GET http://localhost:8080/api/user/emma2@emma.com
-
-<> f-22.txt
-
-###
-
-POST http://localhost:8080/api/users/save
+POST http://localhost:8282/api/user/save
 content-type: application/json
 
 {
@@ -381,22 +392,36 @@ content-type: application/json
   "first_name": "Emmanuel",
   "last_name": "Praise",
   "password": "12345678",
-  "phone": "dsdsgs"
+  "phone": "463636"
 }
 
-<> 2022-10-20T172038.201.json
+<> 2022-10-26T064307.201.json
 
 ###
 
-GET http://localhost:8080/api/user/emma2@emma.com
+POST http://localhost:8282/api/pet_category
+content-type: application/json
+
+{
+  "name": "Dog"
+}
+
+<> 2022-10-26T063208.200.json
 
 ###
 
-GET http://localhost:8080/api/user/emma2@emma.com
+POST http://localhost:8282/api/pet_category
+content-type: application/json
+
+{
+  "name": "Horse"
+}
+
+<> 2022-10-26T063115.200.json
 
 ###
 
-POST http://localhost:8080/api/users/save
+POST http://localhost:8282/api/user/save
 content-type: application/json
 
 {
@@ -404,38 +429,25 @@ content-type: application/json
   "first_name": "Emmanuel",
   "last_name": "Praise",
   "password": "12345678",
-  "phone": "dsdsgs"
+  "phone": "463636"
 }
 
-<> 2022-10-20T171526.201.json
+<> 2022-10-26T063053.201.json
 
 ###
 
-GET http://localhost:8080/api/user/emma2@emma.com
+POST http://localhost:8282/api/pet_category
+content-type: application/json
 
-<> f-21.txt
+{
+  "name": "Horse"
+}
 
-###
-
-GET http://localhost:8080/api/user/emma2@emma.com
-
-<> f-20.txt
-
-###
-
-GET http://localhost:8080/api/user/emma@emma.com
-
-<> f-19.txt
+<> 2022-10-26T062214.500.json
 
 ###
 
-GET http://localhost:8080/api/user/emma@emma.com
-
-<> f-18.txt
-
-###
-
-POST http://localhost:8080/api/users/save
+POST http://localhost:8282/api/user/save
 content-type: application/json
 
 {
@@ -443,10 +455,113 @@ content-type: application/json
   "first_name": "Emmanuel",
   "last_name": "Praise",
   "password": "12345678",
-  "phone": "dsdsgs"
+  "phone": "463636"
 }
 
-<> 2022-10-20T142822.201.json
+<> 2022-10-26T062146.201.json
+
+###
+
+POST http://localhost:8282/api/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": "1",
+  "name": "Jack",
+  "app_user_id": "1",
+  "pet_category": "3"
+}
+
+<> 2022-10-25T225602.400.json
+
+###
+
+POST http://localhost:8282/api/pet_category
+content-type: application/json
+
+{
+  "name": "Horse"
+}
+
+<> 2022-10-25T225431.200.json
+
+###
+
+POST http://localhost:8282/api/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack",
+  "app_user_id": 1,
+  "pet_category": 3
+}
+
+<> 2022-10-25T225200.400.json
+
+###
+
+POST http://localhost:8282/api/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack",
+  "app_user_id": 1,
+  "pet_category": 3
+}
+
+<> 2022-10-25T224947.400.json
+
+###
+
+POST http://localhost:8282/api/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack",
+  "app_user_id": 1,
+  "pet_category": 3
+}
+
+<> 2022-10-24T215642.400.json
+
+###
+
+POST http://localhost:8282/api/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack",
+  "app_user_id": 1,
+  "pet_category": {"id": 1,
+                   "name": "cat"}
+}
+
+<> 2022-10-24T170952.500.json
+
+###
+
+POST http://localhost:8282/api/pet
+content-type: application/json
+
+{
+  "eye_color": "black",
+  "is_active": 1,
+  "name": "Jack",
+  "app_user_id": 1,
+  "pet_category": {"id": 1,
+  "name": "cat"}
+}
+
+<> 2022-10-24T170844.500.json
 
 ###
 

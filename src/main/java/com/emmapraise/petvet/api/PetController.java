@@ -23,6 +23,17 @@ public class PetController {
         return ResponseEntity.ok().body(petService.getPets());
     }
 
+    @PostMapping("/owner/{userId}/category/{categoryName}/pet")
+    public ResponseEntity<Pets> addPet(@PathVariable(value = "userId") long userId,
+                                       @PathVariable(value = "categoryName") String categoryName,
+                                       @RequestBody Pets pets) {
+        return ResponseEntity.ok().body(petService.addPet(userId, categoryName, pets));
+    }
+    @DeleteMapping("/pet/{petId}")
+    public ResponseEntity<String> deletePet(@PathVariable(value = "petId") long petId){
+        return ResponseEntity.ok().body(petService.deletePet(petId));
+    }
+
     @PostMapping("/pet_category")
     public ResponseEntity<Pet_Category> addPetCategory(@RequestBody Pet_Category pet_category){
         return ResponseEntity.ok().body(petCategoryService.addPetCategory(pet_category));
