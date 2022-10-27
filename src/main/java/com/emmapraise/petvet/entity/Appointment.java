@@ -10,14 +10,16 @@ import java.util.UUID;
 @Entity @AllArgsConstructor @NoArgsConstructor
 public class Appointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private String uuid = UUID.randomUUID().toString();
+
     @ManyToOne()
-    private AppUser client = new AppUser();
-    @ManyToOne(cascade = CascadeType.ALL)
-    private AppUser clinic = new AppUser();
+    private AppUser client;
+
+    @ManyToOne()
+    private AppUser clinic;
     private Date date;
     private Double price;
 }

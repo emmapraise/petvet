@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity @AllArgsConstructor @NoArgsConstructor
 public class Reviews {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String review;
     private Integer rating;
     @ManyToOne(fetch = FetchType.EAGER)
-    private Appointment appointment = new Appointment();
+    private Appointment appointment;
 }

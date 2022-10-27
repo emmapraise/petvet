@@ -1,3 +1,9 @@
+GET http://localhost:8282/api/pet/7
+
+<> 2022-10-27T175253.200.json
+
+###
+
 POST http://localhost:8282/api/owner/1/category/Cat/pet
 content-type: application/json
 
@@ -530,17 +536,6 @@ content-type: application/json
 }
 
 <> 2022-10-26T063053.201.json
-
-###
-
-POST http://localhost:8282/api/pet_category
-content-type: application/json
-
-{
-  "name": "Horse"
-}
-
-<> 2022-10-26T062214.500.json
 
 ###
 

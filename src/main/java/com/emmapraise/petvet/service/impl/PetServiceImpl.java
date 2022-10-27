@@ -43,6 +43,12 @@ public class PetServiceImpl implements PetService {
         return  mapToDto(petRepo.save(pets));
     }
 
+    @Override
+    public PetDto getPet(long petId) {
+        Pets pets = petRepo.findById(petId).orElseThrow(()-> new IllegalStateException("There is no pet with the id " + petId));
+        return mapToDto(pets);
+    }
+
     //FIXME fix issues with pet deleting now working
     @Override
     public String deletePet(long petId) {
@@ -59,8 +65,8 @@ public class PetServiceImpl implements PetService {
     //TODO Make sure the Update Pet is working
     @Override
     @Transactional
-    public Pets updatePet(long petId, Pets pets) {
-        petRepo.findById(petId).orElseThrow(()-> new IllegalStateException("There is no pet with the id"+ petId));
+    public PetDto updatePet(long petId, PetDto petDto) {
+        petRepo.findById(petId).orElseThrow(()-> new IllegalStateException("There is no pet with the id "+ petId));
         return null;
     }
 
