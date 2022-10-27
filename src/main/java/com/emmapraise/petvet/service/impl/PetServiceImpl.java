@@ -3,12 +3,14 @@ package com.emmapraise.petvet.service.impl;
 import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.entity.Pet_Category;
 import com.emmapraise.petvet.entity.Pets;
+import com.emmapraise.petvet.payload.PetDto;
 import com.emmapraise.petvet.repo.AppUserRepo;
 import com.emmapraise.petvet.repo.PetCategoryRepo;
 import com.emmapraise.petvet.repo.PetRepo;
 import com.emmapraise.petvet.service.PetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,8 @@ public class PetServiceImpl implements PetService {
     private final PetCategoryRepo petCategoryRepo;
     private final PetRepo petRepo;
 
+    private final ModelMapper mapper = new ModelMapper();
+
     @Override
     public List<Pets> getPets() {
         log.info("Getting all pets");
@@ -29,13 +33,14 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pets addPet(long userId, String categoryName, Pets pets) {
+    public PetDto addPet(long userId, String categoryName, PetDto petDto) {
         log.info("Saving pets");
+        Pets pets = mapToEntity(petDto);
         AppUser appUser = appUserRepo.findById(userId).orElseThrow(() -> new IllegalStateException("User not Found"));
         Pet_Category pet_category = petCategoryRepo.findByName(categoryName);
         pets.setAppUser(appUser);
         pets.setPet_category(pet_category);
-        return petRepo.save(pets);
+        return  mapToDto(petRepo.save(pets));
     }
 
     //FIXME fix issues with pet deleting now working
@@ -57,5 +62,12 @@ public class PetServiceImpl implements PetService {
     public Pets updatePet(long petId, Pets pets) {
         petRepo.findById(petId).orElseThrow(()-> new IllegalStateException("There is no pet with the id"+ petId));
         return null;
+    }
+
+    private PetDto mapToDto(Pets pets){
+        return  mapper.map(pets, PetDto.class);
+    }
+    private Pets mapToEntity(PetDto petDto){
+        return mapper.map(petDto, Pets.class);
     }
 }

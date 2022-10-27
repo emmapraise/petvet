@@ -2,6 +2,7 @@ package com.emmapraise.petvet.api;
 
 import com.emmapraise.petvet.entity.Pet_Category;
 import com.emmapraise.petvet.entity.Pets;
+import com.emmapraise.petvet.payload.PetDto;
 import com.emmapraise.petvet.service.PetCategoryService;
 import com.emmapraise.petvet.service.PetService;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,10 @@ public class PetController {
     }
 
     @PostMapping("/owner/{userId}/category/{categoryName}/pet")
-    public ResponseEntity<Pets> addPet(@PathVariable(value = "userId") long userId,
+    public ResponseEntity<PetDto> addPet(@PathVariable(value = "userId") long userId,
                                        @PathVariable(value = "categoryName") String categoryName,
-                                       @RequestBody Pets pets) {
-        return ResponseEntity.ok().body(petService.addPet(userId, categoryName, pets));
+                                       @RequestBody PetDto petDto) {
+        return ResponseEntity.ok().body(petService.addPet(userId, categoryName, petDto));
     }
     @DeleteMapping("/pet/{petId}")
     public ResponseEntity<String> deletePet(@PathVariable(value = "petId") long petId){
