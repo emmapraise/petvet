@@ -1,14 +1,14 @@
-package com.emmapraise.petvet.Domain;
+package com.emmapraise.petvet.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
+
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AppUser {
@@ -22,6 +22,10 @@ public class AppUser {
     private String password;
     @Column(unique = true)
     private String phone;
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Pets> pets = new HashSet<>();
 }

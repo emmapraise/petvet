@@ -1,4 +1,4 @@
-package com.emmapraise.petvet.Domain;
+package com.emmapraise.petvet.entity;
 
 public enum TransactionStatus {
     PENDING,

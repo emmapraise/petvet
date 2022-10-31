@@ -1,8 +1,9 @@
-package com.emmapraise.petvet.service;
+package com.emmapraise.petvet.service.impl;
 
-import com.emmapraise.petvet.Domain.AppUser;
+import com.emmapraise.petvet.entity.AppUser;
 
 import com.emmapraise.petvet.repo.AppUserRepo;
+import com.emmapraise.petvet.service.AppUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
