@@ -14,10 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Appointment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Appointment extends BaseEntity{
     @Column(unique = true)
     private String uuid = UUID.randomUUID().toString();
 
@@ -27,5 +24,4 @@ public class Appointment {
     @ManyToOne()
     private AppUser clinic;
     private Date date;
-    private Double price;
 }

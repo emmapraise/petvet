@@ -1,6 +1,6 @@
 package com.emmapraise.petvet.service.impl;
 
-import com.emmapraise.petvet.entity.Pet_Category;
+import com.emmapraise.petvet.entity.PetType;
 import com.emmapraise.petvet.repo.PetCategoryRepo;
 import com.emmapraise.petvet.service.PetCategoryService;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +18,13 @@ public class PetCategoryServiceImpl implements PetCategoryService {
     private final PetCategoryRepo petCategoryRepo;
 
     @Override
-    public Pet_Category addPetCategory(Pet_Category pet_category) {
-        log.info("Saving pet with the details {} ", pet_category.getName());
-        return petCategoryRepo.save(pet_category);
+    public PetType addPetCategory(PetType pet_type) {
+        log.info("Saving pet with the details {} ", pet_type.getName());
+        return petCategoryRepo.save(pet_type);
     }
 
     @Override
-    public List<Pet_Category> getPetCategories() {
+    public List<PetType> getPetCategories() {
         return petCategoryRepo.findAll();
     }
 }

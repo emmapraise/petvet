@@ -1,7 +1,7 @@
 package com.emmapraise.petvet.payload;
 
 import com.emmapraise.petvet.entity.AppUser;
-import com.emmapraise.petvet.entity.Pet_Category;
+import com.emmapraise.petvet.entity.PetType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +17,6 @@ public class PetDto {
     private String eyeColor;
 
     private AppUser appUser;
-    private Pet_Category petCategory;
+    private PetType petCategory;
 
 }
