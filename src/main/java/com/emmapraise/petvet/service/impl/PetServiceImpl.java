@@ -1,7 +1,7 @@
 package com.emmapraise.petvet.service.impl;
 
 import com.emmapraise.petvet.entity.AppUser;
-import com.emmapraise.petvet.entity.Pet_Category;
+import com.emmapraise.petvet.entity.PetType;
 import com.emmapraise.petvet.entity.Pets;
 import com.emmapraise.petvet.payload.PetDto;
 import com.emmapraise.petvet.repo.AppUserRepo;
@@ -37,9 +37,9 @@ public class PetServiceImpl implements PetService {
         log.info("Saving pets");
         Pets pets = mapToEntity(petDto);
         AppUser appUser = appUserRepo.findById(userId).orElseThrow(() -> new IllegalStateException("User not Found"));
-        Pet_Category pet_category = petCategoryRepo.findByName(categoryName);
+        PetType pet_type = petCategoryRepo.findByName(categoryName);
         pets.setAppUser(appUser);
-        pets.setPet_category(pet_category);
+//        pets.setPet_type(pet_type);
         return  mapToDto(petRepo.save(pets));
     }
 

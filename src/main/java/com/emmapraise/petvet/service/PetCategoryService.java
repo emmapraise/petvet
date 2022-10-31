@@ -1,13 +1,13 @@
 package com.emmapraise.petvet.service;
 
-import com.emmapraise.petvet.entity.Pet_Category;
+import com.emmapraise.petvet.entity.PetType;
 
 import java.util.List;
 
 public interface PetCategoryService {
 
 
-    Pet_Category addPetCategory(Pet_Category pet_category);
+    PetType addPetCategory(PetType pet_type);
 
-    List<Pet_Category> getPetCategories();
+    List<PetType> getPetCategories();
 }

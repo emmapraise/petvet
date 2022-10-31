@@ -1,6 +1,6 @@
 package com.emmapraise.petvet.api;
 
-import com.emmapraise.petvet.entity.Pet_Category;
+import com.emmapraise.petvet.entity.PetType;
 import com.emmapraise.petvet.entity.Pets;
 import com.emmapraise.petvet.payload.PetDto;
 import com.emmapraise.petvet.service.PetCategoryService;
@@ -48,12 +48,12 @@ public class PetController {
     }
 
     @PostMapping("/pet_category")
-    public ResponseEntity<Pet_Category> addPetCategory(@RequestBody Pet_Category pet_category){
-        return ResponseEntity.ok().body(petCategoryService.addPetCategory(pet_category));
+    public ResponseEntity<PetType> addPetCategory(@RequestBody PetType pet_type){
+        return ResponseEntity.ok().body(petCategoryService.addPetCategory(pet_type));
     }
 
     @GetMapping("/pet_categories")
-    public ResponseEntity<List<Pet_Category>> getPetCategories(){
+    public ResponseEntity<List<PetType>> getPetCategories(){
         return ResponseEntity.ok().body(petCategoryService.getPetCategories());
     }
 }
