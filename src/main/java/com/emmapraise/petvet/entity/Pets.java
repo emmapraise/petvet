@@ -5,6 +5,7 @@ import lombok.*;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -15,6 +16,9 @@ import javax.persistence.*;
 public class Pets extends BaseEntity{
     @Column(name = "name")
     private String name;
+
+    @Column(name = "birth_date")
+    private LocalDate birthdate;
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
