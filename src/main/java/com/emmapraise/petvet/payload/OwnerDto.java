@@ -13,10 +13,10 @@ public class OwnerDto {
     private long id;
 
     @NotEmpty(message = "This is field is required")
-    private String first_name;
+    private String firstName;
 
     @NotEmpty
-    private String last_name;
+    private String lastName;
     @NotEmpty
     @Email
     private String email;
