@@ -24,8 +24,14 @@ public class Vet extends BaseEntity {
     @Column(name = "email", unique = true)
     private String email;
     private Double price;
+
     @Column(name = "is_available")
-    private Boolean isAvailable;
+    private Boolean isAvailable = false;
+
+    @Column(name = "document_path")
+    private String document;
+    
+    private Boolean isApproved = false;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "vet_specialities", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))

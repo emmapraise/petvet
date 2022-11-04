@@ -31,6 +31,8 @@ public class VetDto {
     @Digits(fraction = 2, integer = 10)
     private Double price;
 
-    private Boolean isAvailable;
+    private Boolean isAvailable = false;
+
+    private Boolean isApproved = false;
     private Set<Specialty> specialties;
 }
