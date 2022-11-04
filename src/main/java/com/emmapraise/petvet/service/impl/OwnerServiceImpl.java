@@ -43,11 +43,26 @@ public class OwnerServiceImpl implements OwnerService {
         return mapToDto(ownerRepo.save(owner));
     }
 
+    @Override @Transactional
+    public OwnerDto updateOwner(long ownerId, OwnerDto ownerDto) {
+        log.info("Updating Owner profile of id {}", ownerId);
+        Owner owner = ownerRepo.findById(ownerId).orElseThrow(()-> new IllegalStateException(
+                "No Owner with the id " + ownerId +" found"));
+        owner.setFirstName(ownerDto.getFirstName());
+        owner.setLastName(ownerDto.getLastName());
+        owner.setPhone(ownerDto.getPhone());
+        owner.setAddress(ownerDto.getAddress());
+        owner.setCity(ownerDto.getCity());
+
+        return mapToDto(ownerRepo.save(owner));
+
+    }
+
     @Override
-    public String deleteOwner(String email) {
-        log.info("Deleting user with the email {}", email);
-        if (ownerRepo.existsByEmail(email)){
-            ownerRepo.deleteByEmail(email);
+    public String deleteOwner(long ownerId) {
+        log.info("Deleting user with the id {}", ownerId);
+        if (ownerRepo.existsById(ownerId)){
+            ownerRepo.deleteById(ownerId);
             return "User deleted";
         }
         throw new IllegalStateException("User not found");

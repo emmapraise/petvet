@@ -12,5 +12,7 @@ public interface OwnerService {
 
     OwnerDto saveOwner(OwnerDto ownerDto);
 
-    String deleteOwner(String email);
+    OwnerDto updateOwner(long ownerId, OwnerDto ownerDto);
+
+    String deleteOwner(long ownerId);
 }
