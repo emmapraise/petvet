@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
@@ -25,6 +26,7 @@ public class VetDto {
 
     @NotEmpty
     @Column(unique = true)
+    @Email
     private String email;
 
     @NotEmpty

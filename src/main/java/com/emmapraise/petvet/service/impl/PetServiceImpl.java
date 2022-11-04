@@ -5,7 +5,7 @@ import com.emmapraise.petvet.entity.PetType;
 import com.emmapraise.petvet.entity.Pet;
 import com.emmapraise.petvet.payload.PetDto;
 import com.emmapraise.petvet.repo.OwnerRepo;
-import com.emmapraise.petvet.repo.PetCategoryRepo;
+import com.emmapraise.petvet.repo.PetTypeRepo;
 import com.emmapraise.petvet.repo.PetRepo;
 import com.emmapraise.petvet.service.PetService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class PetServiceImpl implements PetService {
 
     private final OwnerRepo ownerRepo;
 
-    private final PetCategoryRepo petCategoryRepo;
+    private final PetTypeRepo petTypeRepo;
     private final PetRepo petRepo;
 
     private final ModelMapper mapper = new ModelMapper();
@@ -41,7 +41,7 @@ public class PetServiceImpl implements PetService {
         log.info("Saving pets");
         Pet pet = mapToEntity(petDto);
         Owner owner = ownerRepo.findById(ownerId).orElseThrow(() -> new IllegalStateException("Owner not found "));
-        PetType pet_type = petCategoryRepo.findByName(categoryName);
+        PetType pet_type = petTypeRepo.findByName(categoryName);
         pet.setOwner(owner);
         pet.setType(pet_type);
         return mapToDto(petRepo.save(pet));

@@ -26,12 +26,9 @@ public class Pet extends BaseEntity {
     private PetType type;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "owner_id")
     private Owner owner;
-
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "app_user_id", nullable = false)
-//    private AppUser appUser;
 
     private Boolean isActive = true;
 }
