@@ -19,8 +19,6 @@ public class PetDto {
 
     @NotEmpty(message = "The pet name is required")
     private String name;
-    @NotEmpty(message = "The Pet Eye colour is needed")
-    private String eyeColor;
 
     private AppUser appUser;
     private PetType petCategory;

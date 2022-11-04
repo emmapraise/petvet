@@ -24,13 +24,18 @@ public class OwnerController {
         return ResponseEntity.ok().body(ownerService.saveOwner(ownerDto));
     }
 
+    @PutMapping("/owner/{ownerId}")
+    public ResponseEntity<OwnerDto> updateOwner(@PathVariable("ownerId") long ownerId, @RequestBody OwnerDto ownerDto){
+        return ResponseEntity.ok().body(ownerService.updateOwner(ownerId, ownerDto));
+    }
+
     @GetMapping("/owners")
     public ResponseEntity<List<Owner>> getOwners(){
         return ResponseEntity.ok().body(ownerService.getOwners());
     }
 
-    @DeleteMapping("/owner/{email}")
-    public ResponseEntity<String> deleteOwner(@PathVariable("email") String email){
-        return ResponseEntity.ok().body(ownerService.deleteOwner(email));
+    @DeleteMapping("/owner/{ownerId}")
+    public ResponseEntity<String> deleteOwner(@PathVariable("ownerId") long ownerId){
+        return ResponseEntity.ok().body(ownerService.deleteOwner(ownerId));
     }
 }

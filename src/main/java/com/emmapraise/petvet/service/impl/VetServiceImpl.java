@@ -43,10 +43,20 @@ public class VetServiceImpl implements VetService {
         return mapToDto(vetRepo.save(vet));
     }
 
+    @Override @Transactional
+    public VetDto updateVet(long vetId, VetDto vetDto) {
+        Vet vet = vetRepo.findById(vetId).orElseThrow(()-> new IllegalStateException("No Vet with the id "+ vetId));
+        vet.setAddress(vetDto.getAddress());
+        vet.setName(vetDto.getName());
+        vet.setPhone(vetDto.getPhone());
+        vet.setPrice(vetDto.getPrice());
+        return mapToDto(vetRepo.save(vet));
+    }
+
     @Override
-    public String deleteVet(String email) {
-        if (vetRepo.existsByEmail(email)){
-            vetRepo.deleteByEmail(email);
+    public String deleteVet(long vetId) {
+        if (vetRepo.existsById(vetId)){
+            vetRepo.deleteById(vetId);
         }
         throw new IllegalStateException("No Vet found");
     }

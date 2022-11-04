@@ -12,5 +12,7 @@ public interface VetService {
 
     VetDto getVet(String email);
 
-    String deleteVet(String email);
+    VetDto updateVet(long vetId, VetDto vetDto);
+
+    String deleteVet(long vetId);
 }
