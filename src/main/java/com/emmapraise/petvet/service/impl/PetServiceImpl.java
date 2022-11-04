@@ -39,7 +39,7 @@ public class PetServiceImpl implements PetService {
         AppUser appUser = appUserRepo.findById(userId).orElseThrow(() -> new IllegalStateException("User not Found"));
         PetType pet_type = petCategoryRepo.findByName(categoryName);
         pets.setAppUser(appUser);
-//        pets.setPet_type(pet_type);
+        pets.setType(pet_type);
         return  mapToDto(petRepo.save(pets));
     }
 
@@ -66,8 +66,10 @@ public class PetServiceImpl implements PetService {
     @Override
     @Transactional
     public PetDto updatePet(long petId, PetDto petDto) {
-        petRepo.findById(petId).orElseThrow(()-> new IllegalStateException("There is no pet with the id "+ petId));
-        return null;
+        Pets pet = petRepo.findById(petId).orElseThrow(()-> new IllegalStateException("There is no pet with the id "+ petId));
+        pet.setName(petDto.getName());
+        pet.setBirthdate(petDto.getBirthdate());
+        return mapToDto(pet);
     }
 
     private PetDto mapToDto(Pets pets){
