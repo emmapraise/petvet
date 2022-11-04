@@ -21,11 +21,12 @@ public class BaseEntity implements Serializable {
     private Date updatedAt;
 
     @PrePersist
-    public void setCreationDate(){
+    public void setCreationDate() {
         this.createdAt = new Date();
     }
+
     @PreUpdate
-    public void setChangeDate(){
+    public void setChangeDate() {
         this.updatedAt = new Date();
     }
 }

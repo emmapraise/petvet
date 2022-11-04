@@ -16,26 +16,27 @@ public class OwnerController {
     private final OwnerService ownerService;
 
     @GetMapping("/owner/{email}")
-    public ResponseEntity<OwnerDto> getOwner(@PathVariable(value = "email") String email){
+    public ResponseEntity<OwnerDto> getOwner(@PathVariable(value = "email") String email) {
         return ResponseEntity.ok().body(ownerService.getOwner(email));
     }
+
     @PostMapping("/owner")
-    public ResponseEntity<OwnerDto> saveOwner(@RequestBody OwnerDto ownerDto){
+    public ResponseEntity<OwnerDto> saveOwner(@RequestBody OwnerDto ownerDto) {
         return ResponseEntity.ok().body(ownerService.saveOwner(ownerDto));
     }
 
     @PutMapping("/owner/{ownerId}")
-    public ResponseEntity<OwnerDto> updateOwner(@PathVariable("ownerId") long ownerId, @RequestBody OwnerDto ownerDto){
+    public ResponseEntity<OwnerDto> updateOwner(@PathVariable("ownerId") long ownerId, @RequestBody OwnerDto ownerDto) {
         return ResponseEntity.ok().body(ownerService.updateOwner(ownerId, ownerDto));
     }
 
     @GetMapping("/owners")
-    public ResponseEntity<List<Owner>> getOwners(){
+    public ResponseEntity<List<Owner>> getOwners() {
         return ResponseEntity.ok().body(ownerService.getOwners());
     }
 
     @DeleteMapping("/owner/{ownerId}")
-    public ResponseEntity<String> deleteOwner(@PathVariable("ownerId") long ownerId){
+    public ResponseEntity<String> deleteOwner(@PathVariable("ownerId") long ownerId) {
         return ResponseEntity.ok().body(ownerService.deleteOwner(ownerId));
     }
 }

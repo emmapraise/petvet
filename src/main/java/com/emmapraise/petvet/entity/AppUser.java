@@ -25,7 +25,7 @@ public class AppUser {
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
-    @JsonIgnore
-    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Pets> pets = new HashSet<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<Pet> pets = new HashSet<>();
 }

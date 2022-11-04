@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity @AllArgsConstructor @NoArgsConstructor
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Reviews {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

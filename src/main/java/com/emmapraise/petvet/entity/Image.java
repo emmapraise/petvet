@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "images")
-public class Image  extends BaseEntity{
+public class Image extends BaseEntity {
     private String name;
     private String path;
 }

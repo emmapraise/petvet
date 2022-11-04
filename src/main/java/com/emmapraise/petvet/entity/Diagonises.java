@@ -12,11 +12,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Diagonises extends BaseEntity{
+public class Diagonises extends BaseEntity {
     private String title;
     private String description;
     @OneToOne(fetch = FetchType.EAGER)
     private Appointment appointment = new Appointment();
     @OneToOne(fetch = FetchType.EAGER)
-    private Pets pets = new Pets();
+    private Pet pet = new Pet();
 }
