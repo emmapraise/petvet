@@ -1,7 +1,8 @@
 package com.emmapraise.petvet.entity;
 
-public enum TransactionStatus {
+public enum Status {
     PENDING,
-    APPROVED,
+    CANCELED,
+    ACCEPTED,
     COMPLETED;
 }

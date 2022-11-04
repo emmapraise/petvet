@@ -19,9 +19,11 @@ public class Appointment extends BaseEntity{
     private String uuid = UUID.randomUUID().toString();
 
     @ManyToOne()
-    private AppUser client;
+    private Pet pet;
 
     @ManyToOne()
-    private AppUser clinic;
+    private Vet vet;
     private Date date;
+
+    private Status status = Status.PENDING;
 }

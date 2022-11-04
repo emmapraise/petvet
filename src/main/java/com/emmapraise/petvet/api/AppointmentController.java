@@ -14,10 +14,10 @@ import javax.validation.Valid;
 public class AppointmentController {
     private final AppointmentService appointmentService;
 
-    @PostMapping("/clinic/{clinicId}/client/{clientId}/appointment")
-    public ResponseEntity<AppointmentDto> createAppointment(@PathVariable(value = "clinicId") long clinicId,
-                                                            @PathVariable(value = "clientId") long clientId,
+    @PostMapping("/vet/{vetId}/pet/{petId}/appointment")
+    public ResponseEntity<AppointmentDto> createAppointment(@PathVariable(value = "vetId") long vetId,
+                                                            @PathVariable(value = "petId") long petId,
                                                             @Valid @RequestBody AppointmentDto appointmentDto){
-        return ResponseEntity.ok().body(appointmentService.createAppointment(clinicId, clientId, appointmentDto));
+        return ResponseEntity.ok().body(appointmentService.createAppointment(vetId, petId, appointmentDto));
     }
 }

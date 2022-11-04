@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "pets")
-public class Pets extends BaseEntity{
+public class Pet extends BaseEntity{
     @Column(name = "name")
     private String name;
 
@@ -29,9 +29,9 @@ public class Pets extends BaseEntity{
     @JoinColumn(name = "owner_id")
     private Owner owner;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "app_user_id", nullable = false)
-    private AppUser appUser;
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "app_user_id", nullable = false)
+//    private AppUser appUser;
 
     private Boolean isActive = true;
 }

@@ -29,6 +29,6 @@ public class Owner extends BaseEntity {
     private String city;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private Set<Pets> pets;
+    private Set<Pet> pets;
 
 }

@@ -1,6 +1,8 @@
 package com.emmapraise.petvet.payload;
 
-import com.emmapraise.petvet.entity.AppUser;
+import com.emmapraise.petvet.entity.Pet;
+import com.emmapraise.petvet.entity.Status;
+import com.emmapraise.petvet.entity.Vet;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,7 +19,8 @@ public class AppointmentDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date date;
 
-    private AppUser client;
-    private AppUser clinic;
+    private Pet pet;
+    private Vet vet;
     private Double price;
+    private Status status;
 }

@@ -18,5 +18,5 @@ public class Diagonises extends BaseEntity{
     @OneToOne(fetch = FetchType.EAGER)
     private Appointment appointment = new Appointment();
     @OneToOne(fetch = FetchType.EAGER)
-    private Pets pets = new Pets();
+    private Pet pet = new Pet();
 }

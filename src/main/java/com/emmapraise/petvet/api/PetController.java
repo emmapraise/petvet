@@ -1,7 +1,7 @@
 package com.emmapraise.petvet.api;
 
 import com.emmapraise.petvet.entity.PetType;
-import com.emmapraise.petvet.entity.Pets;
+import com.emmapraise.petvet.entity.Pet;
 import com.emmapraise.petvet.payload.PetDto;
 import com.emmapraise.petvet.service.PetCategoryService;
 import com.emmapraise.petvet.service.PetService;
@@ -21,15 +21,15 @@ public class PetController {
     private final PetCategoryService petCategoryService;
 
     @GetMapping("/pets")
-    public ResponseEntity<List<Pets>> getPets(){
+    public ResponseEntity<List<Pet>> getPets(){
         return ResponseEntity.ok().body(petService.getPets());
     }
 
-    @PostMapping("/owner/{userId}/category/{categoryName}/pet")
-    public ResponseEntity<PetDto> addPet(@PathVariable(value = "userId") long userId,
+    @PostMapping("/owner/{ownerId}/category/{categoryName}/pet")
+    public ResponseEntity<PetDto> addPet(@PathVariable(value = "ownerId") long ownerId,
                                        @PathVariable(value = "categoryName") String categoryName,
                                        @Valid @RequestBody PetDto petDto) {
-        return ResponseEntity.ok().body(petService.addPet(userId, categoryName, petDto));
+        return ResponseEntity.ok().body(petService.addPet(ownerId, categoryName, petDto));
     }
 
     @GetMapping("/pet/{petId}")
