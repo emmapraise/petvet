@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Diagonises extends BaseEntity{
+public class Diagonises extends BaseEntity {
     private String title;
     private String description;
     @OneToOne(fetch = FetchType.EAGER)

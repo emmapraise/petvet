@@ -16,7 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
-@Service @Slf4j @Transactional @RequiredArgsConstructor
+
+@Service
+@Slf4j
+@Transactional
+@RequiredArgsConstructor
 public class PetServiceImpl implements PetService {
 
     private final OwnerRepo ownerRepo;
@@ -36,16 +40,16 @@ public class PetServiceImpl implements PetService {
     public PetDto addPet(long ownerId, String categoryName, PetDto petDto) {
         log.info("Saving pets");
         Pet pet = mapToEntity(petDto);
-        Owner owner = ownerRepo.findById(ownerId).orElseThrow(()->new IllegalStateException("Owner not found "));
+        Owner owner = ownerRepo.findById(ownerId).orElseThrow(() -> new IllegalStateException("Owner not found "));
         PetType pet_type = petCategoryRepo.findByName(categoryName);
         pet.setOwner(owner);
         pet.setType(pet_type);
-        return  mapToDto(petRepo.save(pet));
+        return mapToDto(petRepo.save(pet));
     }
 
     @Override
     public PetDto getPet(long petId) {
-        Pet pet = petRepo.findById(petId).orElseThrow(()-> new IllegalStateException("There is no pet with the id " + petId));
+        Pet pet = petRepo.findById(petId).orElseThrow(() -> new IllegalStateException("There is no pet with the id " + petId));
         return mapToDto(pet);
     }
 
@@ -54,8 +58,8 @@ public class PetServiceImpl implements PetService {
         log.info("Deleting the pet with id {}", petId);
         boolean exists = petRepo.existsById(petId);
         log.info("Ok do the pet exists at all {}", exists);
-        if (!exists){
-            throw new IllegalStateException("There is no pet with the id "+ petId);
+        if (!exists) {
+            throw new IllegalStateException("There is no pet with the id " + petId);
         }
         petRepo.deleteById(petId);
         return "Pet has been deleted";
@@ -64,16 +68,17 @@ public class PetServiceImpl implements PetService {
     @Override
     @Transactional
     public PetDto updatePet(long petId, PetDto petDto) {
-        Pet pet = petRepo.findById(petId).orElseThrow(()-> new IllegalStateException("There is no pet with the id "+ petId));
+        Pet pet = petRepo.findById(petId).orElseThrow(() -> new IllegalStateException("There is no pet with the id " + petId));
         pet.setName(petDto.getName());
         pet.setBirthdate(petDto.getBirthdate());
         return mapToDto(pet);
     }
 
-    private PetDto mapToDto(Pet pet){
-        return  mapper.map(pet, PetDto.class);
+    private PetDto mapToDto(Pet pet) {
+        return mapper.map(pet, PetDto.class);
     }
-    private Pet mapToEntity(PetDto petDto){
+
+    private Pet mapToEntity(PetDto petDto) {
         return mapper.map(petDto, Pet.class);
     }
 }

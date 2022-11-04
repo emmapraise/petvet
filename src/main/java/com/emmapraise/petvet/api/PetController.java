@@ -21,39 +21,40 @@ public class PetController {
     private final PetCategoryService petCategoryService;
 
     @GetMapping("/pets")
-    public ResponseEntity<List<Pet>> getPets(){
+    public ResponseEntity<List<Pet>> getPets() {
         return ResponseEntity.ok().body(petService.getPets());
     }
 
     @PostMapping("/owner/{ownerId}/category/{categoryName}/pet")
     public ResponseEntity<PetDto> addPet(@PathVariable(value = "ownerId") long ownerId,
-                                       @PathVariable(value = "categoryName") String categoryName,
-                                       @Valid @RequestBody PetDto petDto) {
+                                         @PathVariable(value = "categoryName") String categoryName,
+                                         @Valid @RequestBody PetDto petDto) {
         return ResponseEntity.ok().body(petService.addPet(ownerId, categoryName, petDto));
     }
 
     @GetMapping("/pet/{petId}")
-    public ResponseEntity<PetDto> getPet(@PathVariable(value = "petId") long petId){
+    public ResponseEntity<PetDto> getPet(@PathVariable(value = "petId") long petId) {
         return ResponseEntity.ok().body(petService.getPet(petId));
     }
+
     @DeleteMapping("/pet/{petId}")
-    public ResponseEntity<String> deletePet(@PathVariable(value = "petId") long petId){
+    public ResponseEntity<String> deletePet(@PathVariable(value = "petId") long petId) {
         return ResponseEntity.ok().body(petService.deletePet(petId));
     }
 
     @PutMapping("/pet/{petId}")
     public ResponseEntity<PetDto> updatePet(@PathVariable(value = "petId") long petId,
-                                         @Valid @RequestBody PetDto petDto){
+                                            @Valid @RequestBody PetDto petDto) {
         return ResponseEntity.ok().body(petService.updatePet(petId, petDto));
     }
 
     @PostMapping("/pet_category")
-    public ResponseEntity<PetType> addPetCategory(@RequestBody PetType pet_type){
+    public ResponseEntity<PetType> addPetCategory(@RequestBody PetType pet_type) {
         return ResponseEntity.ok().body(petCategoryService.addPetCategory(pet_type));
     }
 
     @GetMapping("/pet_categories")
-    public ResponseEntity<List<PetType>> getPetCategories(){
+    public ResponseEntity<List<PetType>> getPetCategories() {
         return ResponseEntity.ok().body(petCategoryService.getPetCategories());
     }
 }

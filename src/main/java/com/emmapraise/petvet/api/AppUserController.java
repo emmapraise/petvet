@@ -18,22 +18,23 @@ public class AppUserController {
     private final AppUserService appUserService;
 
     @GetMapping("/users")
-    public ResponseEntity<List<AppUser>>getUsers(){
+    public ResponseEntity<List<AppUser>> getUsers() {
         return ResponseEntity.ok().body(appUserService.getUsers());
     }
 
     @PostMapping("/user/save")
-    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser){
+    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
         return ResponseEntity.created(uri).body(appUserService.saveUser(appUser));
     }
 
     @GetMapping("/user/{email}")
-    public ResponseEntity<Optional<AppUser>> getUser(@PathVariable("email") String email){
+    public ResponseEntity<Optional<AppUser>> getUser(@PathVariable("email") String email) {
         return ResponseEntity.ok().body(appUserService.getUser(email));
     }
+
     @DeleteMapping("/user/{email}")
-    public ResponseEntity<String> deleteUser(@PathVariable("email") String email){
+    public ResponseEntity<String> deleteUser(@PathVariable("email") String email) {
         return ResponseEntity.ok().body(appUserService.deleteUser(email));
     }
 

@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "vets")
-public class Vet extends BaseEntity{
+public class Vet extends BaseEntity {
     @Column(name = "name")
     private String name;
     @Column(name = "address")

@@ -20,36 +20,37 @@ public class AppUserServiceImpl implements AppUserService {
     private final AppUserRepo appUserRepo;
 
     @Override
-    public List<AppUser> getUsers(){
+    public List<AppUser> getUsers() {
         log.info("Retrieving all users");
         return appUserRepo.findAll();
     }
 
     @Override
-    public AppUser saveUser(AppUser appUser){
+    public AppUser saveUser(AppUser appUser) {
         log.info("Saving new user {} {} into the database", appUser.getFirst_name(), appUser.getLast_name());
         Optional<AppUser> appUserOptional = appUserRepo.findByEmail(appUser.getEmail());
-        if (appUserOptional.isPresent()){
+        if (appUserOptional.isPresent()) {
             throw new IllegalStateException("Email taken");
         }
         return appUserRepo.save(appUser);
     }
+
     @Override
-    public Optional<AppUser> getUser(String email){
+    public Optional<AppUser> getUser(String email) {
         log.info("Retrieving user {} from the database", email);
 //        boolean exists = appUserRepo.existsByEmail(email);
         Optional<AppUser> appUserOptional = appUserRepo.findByEmail(email);
 
-        if (appUserOptional.isPresent()){
+        if (appUserOptional.isPresent()) {
             return appUserOptional;
         }
         throw new IllegalStateException("User is not present");
     }
 
-    public String deleteUser(String email){
-        log.info("Deleting User with email "+ email);
+    public String deleteUser(String email) {
+        log.info("Deleting User with email " + email);
         Optional<AppUser> appUserOptional = appUserRepo.findByEmail(email);
-        if (appUserOptional.isPresent()){
+        if (appUserOptional.isPresent()) {
             appUserRepo.deleteByEmail(email);
             return "User deleted";
         }

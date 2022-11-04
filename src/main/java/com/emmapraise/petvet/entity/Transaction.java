@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Table(name = "transactions")
-public class Transaction extends BaseEntity{
+public class Transaction extends BaseEntity {
     private Status status = Status.PENDING;
     @Column(unique = true)
     private String ref;

@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@Service @Transactional @Slf4j @RequiredArgsConstructor
+
+@Service
+@Transactional
+@Slf4j
+@RequiredArgsConstructor
 public class VetServiceImpl implements VetService {
 
     private final VetRepo vetRepo;
@@ -27,7 +31,7 @@ public class VetServiceImpl implements VetService {
     @Override
     public VetDto getVet(String email) {
         log.info("Get Vet with this email {}", email);
-        if (vetRepo.existsByEmail(email)){
+        if (vetRepo.existsByEmail(email)) {
             return mapToDto(vetRepo.findByEmail(email));
         }
         throw new IllegalStateException("No Vet found");
@@ -37,15 +41,16 @@ public class VetServiceImpl implements VetService {
     public VetDto saveVet(VetDto vetDto) {
         log.info("Saving new vet");
         Vet vet = mapToEntity(vetDto);
-        if (vetRepo.existsByEmail(vet.getEmail())){
+        if (vetRepo.existsByEmail(vet.getEmail())) {
             throw new IllegalStateException("Email is taken");
         }
         return mapToDto(vetRepo.save(vet));
     }
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public VetDto updateVet(long vetId, VetDto vetDto) {
-        Vet vet = vetRepo.findById(vetId).orElseThrow(()-> new IllegalStateException("No Vet with the id "+ vetId));
+        Vet vet = vetRepo.findById(vetId).orElseThrow(() -> new IllegalStateException("No Vet with the id " + vetId));
         vet.setAddress(vetDto.getAddress());
         vet.setName(vetDto.getName());
         vet.setPhone(vetDto.getPhone());
@@ -55,17 +60,17 @@ public class VetServiceImpl implements VetService {
 
     @Override
     public String deleteVet(long vetId) {
-        if (vetRepo.existsById(vetId)){
+        if (vetRepo.existsById(vetId)) {
             vetRepo.deleteById(vetId);
         }
         throw new IllegalStateException("No Vet found");
     }
 
-    private VetDto mapToDto(Vet vet){
-        return  mapper.map(vet, VetDto.class);
+    private VetDto mapToDto(Vet vet) {
+        return mapper.map(vet, VetDto.class);
     }
 
-    private Vet mapToEntity(VetDto vetDto){
+    private Vet mapToEntity(VetDto vetDto) {
         return mapper.map(vetDto, Vet.class);
     }
 }

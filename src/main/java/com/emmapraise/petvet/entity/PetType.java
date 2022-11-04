@@ -9,8 +9,8 @@ import java.util.Set;
 /**
  * These are the Types of Pets available
  * this can be Cat, Dog, Horse etc
- * @author Emmanuel.Oludare
  *
+ * @author Emmanuel.Oludare
  */
 
 @Entity
@@ -19,7 +19,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Table(name = "types")
-public class PetType extends BaseEntity{
+public class PetType extends BaseEntity {
     @Column(unique = true, nullable = false, name = "name")
     private String name;
 //    @OneToMany(mappedBy = "pet_type", cascade = CascadeType.ALL, orphanRemoval = true)
