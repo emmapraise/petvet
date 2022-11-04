@@ -1,6 +1,7 @@
 package com.emmapraise.petvet.payload;
 
 import com.emmapraise.petvet.entity.AppUser;
+import com.emmapraise.petvet.entity.Owner;
 import com.emmapraise.petvet.entity.PetType;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,7 @@ public class PetDto {
     @NotEmpty(message = "The pet name is required")
     private String name;
 
-    private AppUser appUser;
-    private PetType petCategory;
+    private Owner owner;
+    private PetType petType;
 
 }
