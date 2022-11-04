@@ -29,8 +29,13 @@ public class VetController {
         return ResponseEntity.ok().body(vetService.getVet(email));
     }
 
-    @DeleteMapping("/vet/{email}")
-    public ResponseEntity<String> deleteVet(@PathVariable("email") String email){
-        return ResponseEntity.ok().body(vetService.deleteVet(email));
+    @PutMapping("/vet/{vetId}")
+    public ResponseEntity<VetDto> updateVet(@PathVariable("vetId") long vetId, @RequestBody VetDto vetDto){
+        return ResponseEntity.ok().body(vetService.updateVet(vetId, vetDto));
+    }
+
+    @DeleteMapping("/vet/{vetId}")
+    public ResponseEntity<String> deleteVet(@PathVariable("vetId") long vetId){
+        return ResponseEntity.ok().body(vetService.deleteVet(vetId));
     }
 }

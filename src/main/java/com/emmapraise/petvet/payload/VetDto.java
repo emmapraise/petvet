@@ -1,12 +1,16 @@
 package com.emmapraise.petvet.payload;
 
 import com.emmapraise.petvet.entity.Specialty;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
+@Getter
+@Setter
 public class VetDto {
     private long id;
     @NotEmpty
