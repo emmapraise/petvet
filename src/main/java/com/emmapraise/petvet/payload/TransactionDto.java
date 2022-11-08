@@ -22,7 +22,7 @@ public class TransactionDto {
     @Column(unique = true)
     private String ref;
 
-    private Status status;
+    private Status status = Status.PENDING;
 
     private Appointment appointment;
 }

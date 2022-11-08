@@ -1,6 +1,7 @@
 package com.emmapraise.petvet.service.impl;
 
 import com.emmapraise.petvet.entity.Appointment;
+import com.emmapraise.petvet.entity.Status;
 import com.emmapraise.petvet.entity.Transaction;
 import com.emmapraise.petvet.payload.TransactionDto;
 import com.emmapraise.petvet.repo.AppointmentRepo;
@@ -12,6 +13,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +24,16 @@ public class TransactionServiceImpl implements TransactionService {
     private final TransactionRepo transactionRepo;
     private final AppointmentRepo appointmentRepo;
     private final ModelMapper mapper = new ModelMapper();
+
+    @Override
+    public List<TransactionDto> getTransactions() {
+        return transactionRepo.findAll().stream().map(this::mapToDto).toList();
+    }
+
+    @Override
+    public List<TransactionDto> getTransactionsByStatus(Status status) {
+        return transactionRepo.findAllByStatus(status).stream().map(transaction -> mapToDto(transaction)).toList();
+    }
 
     @Override
     public TransactionDto acceptPayment(String appointmentUuid, TransactionDto transactionDto) {

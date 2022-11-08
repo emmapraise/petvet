@@ -22,9 +22,9 @@ public class OwnerServiceImpl implements OwnerService {
     private final ModelMapper mapper = new ModelMapper();
 
     @Override
-    public List<Owner> getOwners() {
+    public List<OwnerDto> getOwners() {
         log.info("Retrieving all Owners");
-        return ownerRepo.findAll();
+        return ownerRepo.findAll().stream().map(this::mapToDto).toList();
     }
 
     @Override

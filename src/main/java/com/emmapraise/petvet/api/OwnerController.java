@@ -31,7 +31,7 @@ public class OwnerController {
     }
 
     @GetMapping("/owner/all")
-    public ResponseEntity<List<Owner>> getOwners() {
+    public ResponseEntity<List<OwnerDto>> getOwners() {
         return ResponseEntity.ok().body(ownerService.getOwners());
     }
 

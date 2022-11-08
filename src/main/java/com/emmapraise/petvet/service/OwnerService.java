@@ -6,7 +6,7 @@ import com.emmapraise.petvet.payload.OwnerDto;
 import java.util.List;
 
 public interface OwnerService {
-    List<Owner> getOwners();
+    List<OwnerDto> getOwners();
 
     OwnerDto getOwner(String email);
 
