@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,7 @@ public class Owner extends BaseEntity {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "email", unique = true)
     private String email;
     @Column(name = "telephone", unique = true)

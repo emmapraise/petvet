@@ -13,7 +13,7 @@ public class TransactionController {
 
     private final TransactionService paymentService;
 
-    @PostMapping("/appointment/{uuid}/pay")
+    @PostMapping("/payment/appointment/{uuid}")
     public ResponseEntity<TransactionDto> acceptPayment(@PathVariable(value = "uuid") String appointmentUuid,
                                                         @RequestBody TransactionDto transactionDto){
         return ResponseEntity.ok().body(paymentService.acceptPayment(appointmentUuid, transactionDto));
