@@ -11,5 +11,7 @@ import java.util.List;
 public interface TransactionRepo extends JpaRepository<Transaction, Long> {
     Boolean existsByRef(String ref);
 
+    Transaction findByRef(String ref);
+
     List<Transaction> findAllByStatus(Status status);
 }

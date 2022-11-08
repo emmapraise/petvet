@@ -22,6 +22,17 @@ public class TransactionController {
                                                         @RequestBody TransactionDto transactionDto){
         return ResponseEntity.ok().body(transactionService.acceptPayment(appointmentUuid, transactionDto));
     }
+
+    @PatchMapping("/payment/ref/{ref}/status/{status}")
+    public ResponseEntity<TransactionDto> updateTransactionStatus(@PathVariable(value = "ref") String ref,
+                                                                  @PathVariable(value = "status") Status status){
+        return ResponseEntity.ok().body(transactionService.updateTransactionStatus(ref, status));
+    }
+
+    @PatchMapping("/payment/verify/ref/{ref}")
+    public ResponseEntity<TransactionDto> verifyPayment(@PathVariable(value = "ref") String ref){
+        return ResponseEntity.ok().body(transactionService.verifyPayment(ref));
+    }
     @GetMapping("/payment/all")
     public ResponseEntity<List<TransactionDto>> getTransactions(){
         return ResponseEntity.ok().body(transactionService.getTransactions());
