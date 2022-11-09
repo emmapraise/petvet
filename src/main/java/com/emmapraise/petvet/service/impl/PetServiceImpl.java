@@ -31,9 +31,9 @@ public class PetServiceImpl implements PetService {
     private final ModelMapper mapper = new ModelMapper();
 
     @Override
-    public List<Pet> getPets() {
+    public List<PetDto> getPets() {
         log.info("Getting all pets");
-        return petRepo.findAll();
+        return petRepo.findAll().stream().map(this::mapToDto).toList();
     }
 
     @Override

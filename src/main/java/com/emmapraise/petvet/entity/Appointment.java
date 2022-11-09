@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,4 +27,7 @@ public class Appointment extends BaseEntity {
     private Date date;
 
     private Status status = Status.PENDING;
+
+    @OneToMany(mappedBy = "appointment")
+    private List<Review> reviews;
 }

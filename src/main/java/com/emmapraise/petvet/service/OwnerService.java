@@ -1,6 +1,5 @@
 package com.emmapraise.petvet.service;
 
-import com.emmapraise.petvet.entity.Owner;
 import com.emmapraise.petvet.payload.OwnerDto;
 
 import java.util.List;

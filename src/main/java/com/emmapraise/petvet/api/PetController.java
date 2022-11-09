@@ -1,7 +1,6 @@
 package com.emmapraise.petvet.api;
 
 import com.emmapraise.petvet.entity.PetType;
-import com.emmapraise.petvet.entity.Pet;
 import com.emmapraise.petvet.payload.PetDto;
 import com.emmapraise.petvet.service.PetCategoryService;
 import com.emmapraise.petvet.service.PetService;
@@ -21,7 +20,7 @@ public class PetController {
     private final PetCategoryService petCategoryService;
 
     @GetMapping("/pet/all")
-    public ResponseEntity<List<Pet>> getPets() {
+    public ResponseEntity<List<PetDto>> getPets() {
         return ResponseEntity.ok().body(petService.getPets());
     }
 

@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,8 +20,9 @@ public class AppointmentDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date date;
 
-    private Pet pet;
-    private Vet vet;
+    private PetDto pet;
+    private VetDto vet;
     private Double price;
     private Status status;
+    private List<ReviewDto> reviews;
 }

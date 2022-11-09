@@ -23,9 +23,9 @@ public class VetServiceImpl implements VetService {
     private final ModelMapper mapper = new ModelMapper();
 
     @Override
-    public List<Vet> getVets() {
+    public List<VetDto> getVets() {
         log.info("Retrieving all Vets");
-        return vetRepo.findAll();
+        return vetRepo.findAll().stream().map(this::mapToDto).toList();
     }
 
     @Override

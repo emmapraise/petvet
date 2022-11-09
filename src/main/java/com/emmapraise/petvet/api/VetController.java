@@ -1,6 +1,5 @@
 package com.emmapraise.petvet.api;
 
-import com.emmapraise.petvet.entity.Vet;
 import com.emmapraise.petvet.payload.VetDto;
 import com.emmapraise.petvet.service.VetService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,7 @@ public class VetController {
     private final VetService vetService;
 
     @GetMapping("/vet/all")
-    public ResponseEntity<List<Vet>> getVets() {
+    public ResponseEntity<List<VetDto>> getVets() {
         return ResponseEntity.ok().body(vetService.getVets());
     }
 

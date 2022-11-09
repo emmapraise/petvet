@@ -24,5 +24,5 @@ public class TransactionDto {
 
     private Status status = Status.PENDING;
 
-    private Appointment appointment;
+    private AppointmentDto appointment;
 }

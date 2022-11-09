@@ -1,6 +1,5 @@
 package com.emmapraise.petvet.api;
 
-import com.emmapraise.petvet.entity.Owner;
 import com.emmapraise.petvet.payload.OwnerDto;
 import com.emmapraise.petvet.service.OwnerService;
 import lombok.RequiredArgsConstructor;

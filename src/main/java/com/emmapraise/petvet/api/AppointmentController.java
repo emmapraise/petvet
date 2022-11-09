@@ -25,12 +25,12 @@ public class AppointmentController {
     }
 
     @GetMapping("/appointment/all")
-    public ResponseEntity<List<Appointment>> getAppointments(){
+    public ResponseEntity<List<AppointmentDto>> getAppointments(){
         return ResponseEntity.ok().body(appointmentService.getAppointments());
     }
 
     @GetMapping("/appointment/{status}")
-    public ResponseEntity<List<Appointment>> getAppointmentsByStatus(@PathVariable("status") Status status){
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByStatus(@PathVariable("status") Status status){
         return ResponseEntity.ok().body(appointmentService.getAppointmentByStatus(status));
     }
 
