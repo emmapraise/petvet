@@ -33,6 +33,8 @@ public class VetDto {
     @Digits(fraction = 2, integer = 10)
     private Double price;
 
+    private String document;
+
     private Boolean isAvailable = false;
 
     private Boolean isApproved = false;

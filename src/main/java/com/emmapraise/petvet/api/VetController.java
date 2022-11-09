@@ -15,7 +15,7 @@ import java.util.List;
 public class VetController {
     private final VetService vetService;
 
-    @GetMapping("/vets")
+    @GetMapping("/vet/all")
     public ResponseEntity<List<Vet>> getVets() {
         return ResponseEntity.ok().body(vetService.getVets());
     }

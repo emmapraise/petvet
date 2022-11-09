@@ -10,4 +10,5 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Long> {
     Appointment findByUuid(String uuid);
 
     List<Appointment> findAllByStatus(Status status);
+
 }

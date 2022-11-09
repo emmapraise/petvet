@@ -17,14 +17,14 @@ import java.util.List;
 public class AppointmentController {
     private final AppointmentService appointmentService;
 
-    @PostMapping("/vet/{vetId}/pet/{petId}/appointment")
+    @PostMapping("/appointment/vet/{vetId}/pet/{petId}")
     public ResponseEntity<AppointmentDto> createAppointment(@PathVariable(value = "vetId") long vetId,
                                                             @PathVariable(value = "petId") long petId,
                                                             @Valid @RequestBody AppointmentDto appointmentDto) {
-        return ResponseEntity.ok().body(appointmentService.createAppointment(vetId, petId, appointmentDto));
+        return ResponseEntity.ok().body(appointmentService.createAppointment(petId, vetId, appointmentDto));
     }
 
-    @GetMapping("/appointments")
+    @GetMapping("/appointment/all")
     public ResponseEntity<List<Appointment>> getAppointments(){
         return ResponseEntity.ok().body(appointmentService.getAppointments());
     }

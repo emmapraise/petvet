@@ -30,8 +30,8 @@ public class OwnerController {
         return ResponseEntity.ok().body(ownerService.updateOwner(ownerId, ownerDto));
     }
 
-    @GetMapping("/owners")
-    public ResponseEntity<List<Owner>> getOwners() {
+    @GetMapping("/owner/all")
+    public ResponseEntity<List<OwnerDto>> getOwners() {
         return ResponseEntity.ok().body(ownerService.getOwners());
     }
 

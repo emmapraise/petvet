@@ -20,12 +20,12 @@ public class PetController {
     private final PetService petService;
     private final PetCategoryService petCategoryService;
 
-    @GetMapping("/pets")
+    @GetMapping("/pet/all")
     public ResponseEntity<List<Pet>> getPets() {
         return ResponseEntity.ok().body(petService.getPets());
     }
 
-    @PostMapping("/owner/{ownerId}/category/{categoryName}/pet")
+    @PostMapping("/pet/owner/{ownerId}/category/{categoryName}")
     public ResponseEntity<PetDto> addPet(@PathVariable(value = "ownerId") long ownerId,
                                          @PathVariable(value = "categoryName") String categoryName,
                                          @Valid @RequestBody PetDto petDto) {
@@ -53,7 +53,7 @@ public class PetController {
         return ResponseEntity.ok().body(petCategoryService.addPetCategory(pet_type));
     }
 
-    @GetMapping("/pet_categories")
+    @GetMapping("/pet_category/all")
     public ResponseEntity<List<PetType>> getPetCategories() {
         return ResponseEntity.ok().body(petCategoryService.getPetCategories());
     }
