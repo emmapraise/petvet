@@ -9,6 +9,8 @@ import java.util.List;
 public interface AppointmentRepo extends JpaRepository<Appointment, Long> {
     Appointment findByUuid(String uuid);
 
+    Appointment findById(long id);
+
     List<Appointment> findAllByStatus(Status status);
 
 }

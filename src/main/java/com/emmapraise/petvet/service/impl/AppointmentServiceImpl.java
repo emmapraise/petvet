@@ -39,22 +39,26 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public List<Appointment> getAppointments() {
+    public List<AppointmentDto> getAppointments() {
         log.info("Get all appointment");
-        return appointmentRepo.findAll();
+        return appointmentRepo.findAll().stream().map(this::mapToDto).toList();
     }
 
     @Override @Transactional
     public AppointmentDto changeAppointmentStatus(long appointmentId, Status status) {
         log.info("Update Appointment Status to {}", status);
-        Appointment appointment = appointmentRepo.findById(appointmentId).orElseThrow(()-> new IllegalStateException("Appointment not found"));
-        appointment.setStatus(status);
-        return mapToDto(appointment);
+        if (appointmentRepo.existsById(appointmentId)){
+            Appointment appointment = appointmentRepo.findById(appointmentId);
+            appointment.setStatus(status);
+            return mapToDto(appointment);
+        }
+        throw new IllegalStateException("No Appointment Found");
+
     }
 
     @Override
-    public List<Appointment> getAppointmentByStatus(Status status) {
-        return appointmentRepo.findAllByStatus(status);
+    public List<AppointmentDto> getAppointmentByStatus(Status status) {
+        return appointmentRepo.findAllByStatus(status).stream().map(this::mapToDto).toList();
     }
 
     private AppointmentDto mapToDto(Appointment appointment) {

@@ -21,7 +21,7 @@ public class PetDto {
     @NotEmpty(message = "The pet name is required")
     private String name;
 
-    private Owner owner;
+    private OwnerDto owner;
     private PetType petType;
 
 }
