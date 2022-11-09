@@ -1,6 +1,5 @@
 package com.emmapraise.petvet.service;
 
-import com.emmapraise.petvet.entity.Pet;
 import com.emmapraise.petvet.payload.PetDto;
 
 import java.util.List;
@@ -14,5 +13,5 @@ public interface PetService {
 
     PetDto updatePet(long petId, PetDto petDto);
 
-    List<Pet> getPets();
+    List<PetDto> getPets();
 }

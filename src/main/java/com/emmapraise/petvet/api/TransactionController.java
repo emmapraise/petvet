@@ -1,7 +1,6 @@
 package com.emmapraise.petvet.api;
 
 import com.emmapraise.petvet.entity.Status;
-import com.emmapraise.petvet.entity.Transaction;
 import com.emmapraise.petvet.payload.TransactionDto;
 import com.emmapraise.petvet.service.TransactionService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class TransactionController {
-
     private final TransactionService transactionService;
 
     @PostMapping("/payment/appointment/{uuid}")
