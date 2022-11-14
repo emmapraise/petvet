@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.Set;
 
 @Entity
@@ -16,11 +15,17 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "vets")
 public class Vet extends BaseEntity {
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
+    @Column(name = "logo_path")
+    private String logo;
+    @Column(name = "cover_image_path")
+    private String coverImage;
     @Column(name = "address")
     private String address;
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false)
     private String phone;
     @Column(name = "email", unique = true)
     private String email;

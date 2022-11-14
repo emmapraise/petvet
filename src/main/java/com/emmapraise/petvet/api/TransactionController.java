@@ -1,5 +1,6 @@
 package com.emmapraise.petvet.api;
 
+import com.emmapraise.petvet.Payment.PaymentResponse;
 import com.emmapraise.petvet.entity.Status;
 import com.emmapraise.petvet.entity.Transaction;
 import com.emmapraise.petvet.payload.TransactionDto;
@@ -29,8 +30,8 @@ public class TransactionController {
         return ResponseEntity.ok().body(transactionService.updateTransactionStatus(ref, status));
     }
 
-    @PatchMapping("/payment/verify/ref/{ref}")
-    public ResponseEntity<TransactionDto> verifyPayment(@PathVariable(value = "ref") String ref){
+    @GetMapping("/payment/verify/ref/{ref}")
+    public ResponseEntity<PaymentResponse> verifyPayment(@PathVariable(value = "ref") String ref){
         return ResponseEntity.ok().body(transactionService.verifyPayment(ref));
     }
     @GetMapping("/payment/all")

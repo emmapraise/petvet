@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.List;
 
 
@@ -65,23 +66,24 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public TransactionDto verifyPayment(String ref) {
+    public PaymentResponse verifyPayment(String ref) {
         //Check if transaction of that ref exist in the database
         if (transactionRepo.existsByRef(ref)){
             Transaction transaction = transactionRepo.findByRef(ref);
             try {
-                String uri = "https://qa.interswitchng.com/collections/api/v1/gettransaction.json?merchantcode=" +merchant_code+
-                        "&transactionreference="+ref+
-                        "&amount="+transaction.getPrice();
+                String uri = "https://qa.interswitchng.com/collections/api/v1/gettransaction.json?merchantcode="+merchant_code+"&transactionreference="+ref+"&amount="+transaction.getPrice();
+                log.info("The ref code is {} while the price is {}", ref, transaction.getPrice());
                 RestTemplate restTemplate = new RestTemplate();
                 PaymentResponse response = restTemplate.getForObject(uri, PaymentResponse.class);
                 log.info("The response is {}", response);
+                log.info("{}", restTemplate.getForObject(uri, PaymentResponse.class));
+                return response;
             }
             catch (Exception e){
                 throw new RuntimeException(e);
             }
         }
-        return null;
+        throw new IllegalStateException("Just an error i dont know why");
     }
 
     private TransactionDto mapToDto(Transaction transaction) {

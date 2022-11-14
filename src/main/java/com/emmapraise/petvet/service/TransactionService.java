@@ -1,5 +1,6 @@
 package com.emmapraise.petvet.service;
 
+import com.emmapraise.petvet.Payment.PaymentResponse;
 import com.emmapraise.petvet.entity.Status;
 import com.emmapraise.petvet.payload.TransactionDto;
 
@@ -13,5 +14,5 @@ public interface TransactionService {
 
     TransactionDto updateTransactionStatus(String ref, Status status);
 
-    TransactionDto verifyPayment(String ref);
+    PaymentResponse verifyPayment(String ref);
 }
