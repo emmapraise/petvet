@@ -29,12 +29,9 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
-    public VetDto getVet(String email) {
-        log.info("Get Vet with this email {}", email);
-        if (vetRepo.existsByEmail(email)) {
-            return mapToDto(vetRepo.findByEmail(email));
-        }
-        throw new IllegalStateException("No Vet found");
+    public VetDto getVet(long vetId) {
+        log.info("Get Vet with this id {}", vetId);
+        return mapToDto(vetRepo.findById(vetId).orElseThrow(()-> new IllegalStateException("Vet with the id dont exist")));
     }
 
     @Override

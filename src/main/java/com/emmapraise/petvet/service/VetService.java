@@ -10,7 +10,7 @@ public interface VetService {
 
     VetDto saveVet(VetDto vetDto);
 
-    VetDto getVet(String email);
+    VetDto getVet(long vetId);
 
     VetDto updateVet(long vetId, VetDto vetDto);
 

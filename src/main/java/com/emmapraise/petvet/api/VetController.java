@@ -26,9 +26,9 @@ public class VetController {
         return ResponseEntity.ok().body(vetService.saveVet(vetDto));
     }
 
-    @GetMapping("/vet/{email}")
-    public ResponseEntity<VetDto> getVet(@PathVariable("email") String email) {
-        return ResponseEntity.ok().body(vetService.getVet(email));
+    @GetMapping("/vet/{id}")
+    public ResponseEntity<VetDto> getVet(@PathVariable("id") long vetId) {
+        return ResponseEntity.ok().body(vetService.getVet(vetId));
     }
 
     @PutMapping("/vet/{vetId}")
