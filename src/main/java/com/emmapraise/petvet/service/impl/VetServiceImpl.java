@@ -1,7 +1,9 @@
 package com.emmapraise.petvet.service.impl;
 
+import com.emmapraise.petvet.entity.Specialty;
 import com.emmapraise.petvet.entity.Vet;
 import com.emmapraise.petvet.payload.VetDto;
+import com.emmapraise.petvet.repo.SpecialtyRepo;
 import com.emmapraise.petvet.repo.VetRepo;
 import com.emmapraise.petvet.service.VetService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,8 @@ import java.util.List;
 public class VetServiceImpl implements VetService {
 
     private final VetRepo vetRepo;
+
+    private final SpecialtyRepo specialtyRepo;
 
     private final ModelMapper mapper = new ModelMapper();
 
@@ -42,6 +46,14 @@ public class VetServiceImpl implements VetService {
             throw new IllegalStateException("Email is taken");
         }
         return mapToDto(vetRepo.save(vet));
+    }
+
+    @Override
+    public void addSpecialtyToVet(long vetId, long specialtyId){
+        log.info("Add specialities to vet clinic ");
+        Vet vet = vetRepo.findById(vetId).orElseThrow(()-> new IllegalStateException("No vet Found"));
+        Specialty specialty = specialtyRepo.findById(specialtyId).orElseThrow(()-> new IllegalStateException("No Speciality found"));
+        vet.getSpecialties().add(specialty);
     }
 
     @Override

@@ -12,6 +12,8 @@ public interface VetService {
 
     VetDto getVet(long vetId);
 
+    void addSpecialtyToVet(long vetId, long specialtyId);
+
     VetDto updateVet(long vetId, VetDto vetDto);
 
     String deleteVet(long vetId);
