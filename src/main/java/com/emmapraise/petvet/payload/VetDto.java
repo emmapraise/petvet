@@ -18,6 +18,13 @@ public class VetDto {
     private String name;
 
     @NotEmpty
+    private String description;
+
+    private String logo;
+
+    private String coverImage;
+
+    @NotEmpty
     private String address;
 
     @NotEmpty

@@ -9,7 +9,9 @@ public interface VetService {
 
     VetDto saveVet(VetDto vetDto);
 
-    VetDto getVet(String email);
+    VetDto getVet(long vetId);
+
+    void addSpecialtyToVet(long vetId, long specialtyId);
 
     VetDto updateVet(long vetId, VetDto vetDto);
 
