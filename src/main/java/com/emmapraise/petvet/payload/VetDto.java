@@ -1,7 +1,9 @@
 package com.emmapraise.petvet.payload;
 
 import com.emmapraise.petvet.entity.Specialty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class VetDto {
     private long id;
     @NotEmpty
@@ -20,9 +24,9 @@ public class VetDto {
     @NotEmpty
     private String description;
 
-    private String logo;
+    private AttachDto logo;
 
-    private String coverImage;
+    private AttachDto coverImage;
 
     @NotEmpty
     private String address;
@@ -40,7 +44,7 @@ public class VetDto {
     @Digits(fraction = 2, integer = 10)
     private Double price;
 
-    private String document;
+    private AttachDto document;
 
     private Boolean isAvailable = false;
 

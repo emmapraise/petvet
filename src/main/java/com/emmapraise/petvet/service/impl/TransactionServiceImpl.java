@@ -12,12 +12,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.util.List;
 
 
@@ -71,7 +69,8 @@ public class TransactionServiceImpl implements TransactionService {
         if (transactionRepo.existsByRef(ref)){
             Transaction transaction = transactionRepo.findByRef(ref);
             try {
-                String uri = "https://qa.interswitchng.com/collections/api/v1/gettransaction.json?merchantcode="+merchant_code+"&transactionreference="+ref+"&amount="+transaction.getPrice();
+                String uri = "https://qa.interswitchng.com/collections/api/v1/gettransaction.json?merchantcode="
+                        +merchant_code+"&transactionreference="+ref+"&amount="+transaction.getPrice();
                 log.info("The ref code is {} while the price is {}", ref, transaction.getPrice());
                 RestTemplate restTemplate = new RestTemplate();
                 PaymentResponse response = restTemplate.getForObject(uri, PaymentResponse.class);

@@ -1,16 +1,19 @@
 package com.emmapraise.petvet.service.impl;
 
+import com.emmapraise.petvet.entity.Attach;
 import com.emmapraise.petvet.entity.Specialty;
 import com.emmapraise.petvet.entity.Vet;
 import com.emmapraise.petvet.payload.VetDto;
 import com.emmapraise.petvet.repo.SpecialtyRepo;
 import com.emmapraise.petvet.repo.VetRepo;
+import com.emmapraise.petvet.service.AttachService;
 import com.emmapraise.petvet.service.VetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,6 +24,8 @@ import java.util.List;
 public class VetServiceImpl implements VetService {
 
     private final VetRepo vetRepo;
+
+    private final AttachService attachService;
 
     private final SpecialtyRepo specialtyRepo;
 
@@ -39,9 +44,25 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
-    public VetDto saveVet(VetDto vetDto) {
+    public VetDto saveVet(VetDto vetDto, MultipartFile... files) throws Exception {
         log.info("Saving new vet");
         Vet vet = mapToEntity(vetDto);
+        if (files[0] != null) {
+            log.info("Uploading Cover image {}", files[0]);
+            Attach coverImage=  attachService.upload(files[0]);
+            vet.setCoverImage(coverImage);
+        }
+        if (files[1] != null) {
+            log.info("Uploading Logo {}", files[1]);
+            Attach logo=  attachService.upload(files[1]);
+            vet.setLogo(logo);
+        }
+        if (files[2] != null) {
+            log.info("Uploading Document {}", files[2]);
+            Attach document = attachService.upload(files[2]);
+            vet.setDocument(document);
+        }
+
         if (vetRepo.existsByEmail(vet.getEmail())) {
             throw new IllegalStateException("Email is taken");
         }

@@ -1,8 +1,6 @@
 package com.emmapraise.petvet.payload;
 
-import com.emmapraise.petvet.entity.Pet;
 import com.emmapraise.petvet.entity.Status;
-import com.emmapraise.petvet.entity.Vet;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;

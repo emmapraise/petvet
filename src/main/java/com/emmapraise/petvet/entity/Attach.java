@@ -7,13 +7,15 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "images")
-public class Image extends BaseEntity {
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "attachments")
+public class Attach extends BaseEntity {
     private String name;
     private String path;
+    private String type;
+    @Lob
+    private byte[] data;
 }
