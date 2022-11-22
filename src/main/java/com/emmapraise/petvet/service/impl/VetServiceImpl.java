@@ -62,7 +62,6 @@ public class VetServiceImpl implements VetService {
             Attach document = attachService.upload(files[2]);
             vet.setDocument(document);
         }
-
         if (vetRepo.existsByEmail(vet.getEmail())) {
             throw new IllegalStateException("Email is taken");
         }

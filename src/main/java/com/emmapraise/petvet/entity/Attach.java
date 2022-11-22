@@ -13,7 +13,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity(name = "attachments")
 public class Attach extends BaseEntity {
+    @Column(unique = true)
     private String name;
+    @Column(unique = true)
     private String path;
     private String type;
     @Lob

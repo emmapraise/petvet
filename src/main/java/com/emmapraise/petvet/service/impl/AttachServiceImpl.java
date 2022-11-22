@@ -38,7 +38,8 @@ public class AttachServiceImpl implements AttachService {
     }
 
     @Override
-    public Attach getImage(long imageId) throws Exception {
-        return attachRepo.findById(imageId).orElseThrow(()-> new Exception("File not found with Id "+ imageId));
+    public Attach getImage(String attachName) throws Exception {
+        log.info("Getting the right document out with name {}", attachName);
+        return attachRepo.findByName(attachName);
     }
 }

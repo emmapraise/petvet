@@ -22,16 +22,12 @@ public class AttachController {
     @PostMapping("/image/upload")
     public AttachDto uploadFile(@RequestParam("file") MultipartFile file) throws Exception{
         Attach attach = attachService.upload(file);
-        String downloadURI = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/api/download/")
-                .path(String.valueOf(attach.getId()))
-                .toUriString();
-        return new AttachDto(attach.getId(), attach.getName(), downloadURI, file.getContentType(), file.getSize());
+        return new AttachDto(attach.getId(), attach.getName(), attach.getPath(), file.getContentType(), file.getSize());
     }
 
-    @GetMapping("/download/{imageId}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable("imageId") long imageId) throws Exception{
-        Attach attach = attachService.getImage(imageId);
+    @GetMapping("/download/{attachName}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable("attachName") String attachName) throws Exception{
+        Attach attach = attachService.getImage(attachName);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(attach.getType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + attach.getName()

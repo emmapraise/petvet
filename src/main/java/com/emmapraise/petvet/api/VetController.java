@@ -1,10 +1,9 @@
 package com.emmapraise.petvet.api;
 
+import com.emmapraise.petvet.payload.SpecialityToVetForm;
 import com.emmapraise.petvet.payload.VetDto;
 import com.emmapraise.petvet.service.VetService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -53,10 +52,4 @@ public class VetController {
         return ResponseEntity.ok().body(vetService.deleteVet(vetId));
     }
 
-}
-@Getter
-@Setter
-class SpecialityToVetForm {
-    private long vetId;
-    private long specialtyId;
 }
