@@ -1,7 +1,10 @@
 package com.emmapraise.petvet.api;
 
 import com.emmapraise.petvet.entity.AppUser;
+import com.emmapraise.petvet.payload.RegistrationRequest;
 import com.emmapraise.petvet.service.AppUserService;
+import com.emmapraise.petvet.service.RegistrationService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,20 +16,32 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
+@AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 public class AppUserController {
     private final AppUserService appUserService;
+    private final RegistrationService registrationService;
 
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers() {
         return ResponseEntity.ok().body(appUserService.getUsers());
     }
 
-    @PostMapping("/user/save")
-    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(appUserService.saveUser(appUser));
+//    @PostMapping("/user/save")
+//    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser) {
+//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
+//        return ResponseEntity.created(uri).body(appUserService.saveUser(appUser));
+//    }
+
+    @PostMapping("/user/register")
+    public String register(@RequestBody RegistrationRequest request) {
+        return registrationService.register(request);
+    }
+
+    @GetMapping("/user/register/confirm")
+    public String confirm(@RequestParam("token") String token) {
+        return registrationService.confirmToken(token);
     }
 
     @GetMapping("/user/{email}")
