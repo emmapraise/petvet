@@ -1,12 +1,11 @@
 package com.emmapraise.petvet.service.impl;
 
+import com.emmapraise.petvet.email.EmailSenderService;
 import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.entity.ConfirmationToken;
-import com.emmapraise.petvet.entity.Role;
 import com.emmapraise.petvet.payload.EmailValidator;
 import com.emmapraise.petvet.payload.RegistrationRequest;
 import com.emmapraise.petvet.service.AppUserService;
-import com.emmapraise.petvet.service.EmailSenderService;
 import com.emmapraise.petvet.service.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,7 +39,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 )
         );
         String link = "http://localhost:8282/api/user/register/confirm?token=" + token;
-        emailSenderService.send(request.getEmail(), buildEmail(request.getFirstName(), link));
+        emailSenderService.send(request.getEmail(), buildEmail(request.getFirstName(), link), "Confirm your email");
 
         return token;
     }

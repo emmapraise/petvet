@@ -1,5 +1,7 @@
 package com.emmapraise.petvet.service.impl;
 
+import com.emmapraise.petvet.email.EmailSenderService;
+import com.emmapraise.petvet.email.Templates.AppointmentTemplate;
 import com.emmapraise.petvet.entity.Appointment;
 import com.emmapraise.petvet.entity.Pet;
 import com.emmapraise.petvet.entity.Status;
@@ -24,6 +26,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     private final PetRepo petRepo;
     private final VetRepo vetRepo;
+    private final EmailSenderService emailSenderService;
+
+    private final AppointmentTemplate appointmentTemplate;
     private final ModelMapper mapper = new ModelMapper();
 
     @Override
@@ -34,8 +39,19 @@ public class AppointmentServiceImpl implements AppointmentService {
         Vet vet = vetRepo.findById(vetId).orElseThrow(() -> new IllegalStateException("No vet found"));
         appointment.setPet(pet);
         appointment.setVet(vet);
+
+        Appointment app = appointmentRepo.save(appointment);
+        emailSenderService.send(pet.getPetOwner().getUser().getEmail(),
+                appointmentTemplate.buildOwnerEmail(pet.getPetOwner().getUser().getFirstName(),
+                        vet.getName(), pet.getName(), appointment.getDate()), "Appointment Booked");
+
+        String link = String.format("http:localhost:8282/api/appointment/%d/status/%s", app.getId(), Status.ACCEPTED);
+
+        emailSenderService.send(pet.getPetOwner().getUser().getEmail(),
+                appointmentTemplate.buildVetEmail(pet.getPetOwner().getUser().getFirstName(),
+                        vet.getName(), pet.getName(), appointment.getDate(), link), "You have a Booked Appointment");
         log.info("Appointment Saved Successfully");
-        return mapToDto(appointmentRepo.save(appointment));
+        return mapToDto(app);
     }
 
     @Override
