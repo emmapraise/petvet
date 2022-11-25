@@ -19,10 +19,13 @@ public class Vet extends BaseEntity {
     private String name;
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
-    @Column(name = "logo_path")
-    private String logo;
-    @Column(name = "cover_image_path")
-    private String coverImage;
+
+    @OneToOne
+    private Attach logo;
+
+    @OneToOne
+    private Attach coverImage;
+
     @Column(name = "address")
     private String address;
     @Column(name = "phone", nullable = false)
@@ -34,8 +37,8 @@ public class Vet extends BaseEntity {
     @Column(name = "is_available")
     private Boolean isAvailable = false;
 
-    @Column(name = "document_path")
-    private String document;
+    @OneToOne
+    private Attach document;
     
     private Boolean isApproved = false;
 

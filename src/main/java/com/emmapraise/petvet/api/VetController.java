@@ -1,12 +1,13 @@
 package com.emmapraise.petvet.api;
 
+import com.emmapraise.petvet.payload.SpecialityToVetForm;
 import com.emmapraise.petvet.payload.VetDto;
 import com.emmapraise.petvet.service.VetService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,8 +24,11 @@ public class VetController {
     }
 
     @PostMapping("/vet")
-    public ResponseEntity<VetDto> saveVet(@RequestBody VetDto vetDto) {
-        return ResponseEntity.ok().body(vetService.saveVet(vetDto));
+    public ResponseEntity<VetDto> saveVet(@RequestParam("coverImage") MultipartFile coverImage,
+                                          @RequestParam("logo") MultipartFile logo,
+                                          @RequestParam("document") MultipartFile document,
+                                          @ModelAttribute("vetDto") VetDto vetDto, BindingResult result) throws Exception {
+        return ResponseEntity.ok().body(vetService.saveVet(vetDto, coverImage, logo, document));
     }
 
     @PostMapping("/vet/specialtyToVet")
@@ -48,10 +52,4 @@ public class VetController {
         return ResponseEntity.ok().body(vetService.deleteVet(vetId));
     }
 
-}
-@Getter
-@Setter
-class SpecialityToVetForm {
-    private long vetId;
-    private long specialtyId;
 }
