@@ -1,7 +1,5 @@
 package com.emmapraise.petvet.payload;
 
-import com.emmapraise.petvet.entity.AppUser;
-import com.emmapraise.petvet.entity.Owner;
 import com.emmapraise.petvet.entity.PetType;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
 package com.emmapraise.petvet.payload;
 
 import com.emmapraise.petvet.entity.Appointment;
-import com.emmapraise.petvet.entity.Owner;
+import com.emmapraise.petvet.entity.PetOwner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,5 +27,5 @@ public class ReviewDto {
     private Appointment appointment;
 
     @JsonIgnore
-    private Owner owner;
+    private PetOwner petOwner;
 }

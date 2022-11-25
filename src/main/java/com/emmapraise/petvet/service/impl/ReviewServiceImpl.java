@@ -1,7 +1,7 @@
 package com.emmapraise.petvet.service.impl;
 
 import com.emmapraise.petvet.entity.Appointment;
-import com.emmapraise.petvet.entity.Owner;
+import com.emmapraise.petvet.entity.PetOwner;
 import com.emmapraise.petvet.entity.Review;
 import com.emmapraise.petvet.payload.ReviewDto;
 import com.emmapraise.petvet.repo.AppointmentRepo;
@@ -37,11 +37,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public ReviewDto postReview(long ownerId, long appointmentId, ReviewDto reviewDto) {
-        Owner owner = ownerRepo.findById(ownerId).orElseThrow(()-> new IllegalStateException("No Owner Found"));
+        PetOwner petOwner = ownerRepo.findById(ownerId).orElseThrow(()-> new IllegalStateException("No Owner Found"));
         if (appointmentRepo.existsById(appointmentId)){
             Appointment appointment = appointmentRepo.findById(appointmentId);
             Review review = mapToEntity(reviewDto);
-            review.setOwner(owner);
+            review.setPetOwner(petOwner);
             review.setAppointment(appointment);
             return mapToDto(reviewRepo.save(review));
         }

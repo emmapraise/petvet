@@ -1,5 +1,6 @@
 package com.emmapraise.petvet.payload;
 
+import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.entity.Specialty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -50,4 +51,5 @@ public class VetDto {
 
     private Boolean isApproved = false;
     private Set<Specialty> specialties;
+    private AppUserDto user;
 }

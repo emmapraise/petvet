@@ -28,7 +28,7 @@ public class Pet extends BaseEntity {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "owner_id")
-    private Owner owner;
+    private PetOwner petOwner;
 
     private Boolean isActive = true;
 }
