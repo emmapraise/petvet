@@ -1,5 +1,6 @@
 package com.emmapraise.petvet.service.impl;
 
+import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.entity.Attach;
 import com.emmapraise.petvet.entity.Specialty;
 import com.emmapraise.petvet.entity.Vet;
@@ -11,6 +12,7 @@ import com.emmapraise.petvet.service.VetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,9 +46,10 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
-    public VetDto saveVet(VetDto vetDto, MultipartFile... files) throws Exception {
+    public VetDto saveVet(VetDto vetDto, AppUser currentUser, MultipartFile... files) throws Exception {
         log.info("Saving new vet");
         Vet vet = mapToEntity(vetDto);
+        vet.setUser(currentUser);
         if (files[0] != null) {
             log.info("Uploading Cover image {}", files[0]);
             Attach coverImage=  attachService.upload(files[0]);
@@ -61,9 +64,6 @@ public class VetServiceImpl implements VetService {
             log.info("Uploading Document {}", files[2]);
             Attach document = attachService.upload(files[2]);
             vet.setDocument(document);
-        }
-        if (vetRepo.existsByEmail(vet.getEmail())) {
-            throw new IllegalStateException("Email is taken");
         }
         return mapToDto(vetRepo.save(vet));
     }
@@ -82,7 +82,7 @@ public class VetServiceImpl implements VetService {
         Vet vet = vetRepo.findById(vetId).orElseThrow(() -> new IllegalStateException("No Vet with the id " + vetId));
         vet.setAddress(vetDto.getAddress());
         vet.setName(vetDto.getName());
-        vet.setPhone(vetDto.getPhone());
+//        vet.setPhone(vetDto.getPhone());
         vet.setPrice(vetDto.getPrice());
         return mapToDto(vetRepo.save(vet));
     }

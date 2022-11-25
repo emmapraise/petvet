@@ -36,7 +36,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                         request.getEmail(),
                         request.getPassword(),
                         request.getPhone(),
-                        Role.USER
+                        request.getRole()
                 )
         );
         String link = "http://localhost:8282/api/user/register/confirm?token=" + token;

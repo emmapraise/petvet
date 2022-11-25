@@ -28,10 +28,15 @@ public class Vet extends BaseEntity {
 
     @Column(name = "address")
     private String address;
-    @Column(name = "phone", nullable = false)
-    private String phone;
-    @Column(name = "email", unique = true)
-    private String email;
+
+//    @Column(name = "phone", nullable = false)
+//    private String phone;
+//    @Column(name = "email", unique = true)
+//    private String email;
+
+    @OneToOne
+    private AppUser user;
+
     private Double price;
 
     @Column(name = "is_available")

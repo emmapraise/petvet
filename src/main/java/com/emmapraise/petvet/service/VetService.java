@@ -1,5 +1,6 @@
 package com.emmapraise.petvet.service;
 
+import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.payload.VetDto;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -8,7 +9,7 @@ import java.util.List;
 public interface VetService {
     List<VetDto> getVets();
 
-    VetDto saveVet(VetDto vetDto, MultipartFile... files) throws Exception;
+    VetDto saveVet(VetDto vetDto, AppUser currentUser, MultipartFile... files) throws Exception;
 
     VetDto getVet(long vetId);
 

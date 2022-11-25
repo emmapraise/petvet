@@ -1,5 +1,6 @@
 package com.emmapraise.petvet.payload;
 
+import com.emmapraise.petvet.entity.Role;
 import lombok.*;
 
 @Getter
@@ -13,4 +14,5 @@ public class RegistrationRequest {
     private final String email;
     private final String phone;
     private final String password;
+    private final Role role;
 }
