@@ -45,7 +45,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                 appointmentTemplate.buildOwnerEmail(pet.getPetOwner().getUser().getFirstName(),
                         vet.getName(), pet.getName(), appointment.getDate()), "Appointment Booked");
 
-        String link = String.format("http:localhost:8282/api/appointment/%d/status/%s", app.getId(), Status.ACCEPTED);
+        String link = String.format("http://localhost:8282/api/appointment/%d/status/%s", app.getId(), Status.ACCEPTED);
 
         emailSenderService.send(pet.getPetOwner().getUser().getEmail(),
                 appointmentTemplate.buildVetEmail(pet.getPetOwner().getUser().getFirstName(),

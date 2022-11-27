@@ -11,6 +11,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static java.util.Collections.singletonList;
 
 @Configuration
 @AllArgsConstructor
@@ -25,20 +35,42 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.cors().configurationSource(corsConfigurationSource())
+                .and()
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/api/user/register/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                    .antMatchers("/api/user/register/**", "/api/**/all")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                    .successHandler(authenticationSuccessHandler())
+                    .permitAll();
+    }
 
+    @Bean
+    public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler(){
+        SavedRequestAwareAuthenticationSuccessHandler handler = new SavedRequestAwareAuthenticationSuccessHandler();
+        handler.setTargetUrlParameter("/api/user");
+        return handler;
+    }
 
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        List<String> allowOrigins = Arrays.asList("*");
+        configuration.setAllowedOriginPatterns(allowOrigins);
+        configuration.setAllowedMethods(singletonList("*"));
+        configuration.setAllowedHeaders(singletonList("*"));
+        //in case authentication is enabled this flag MUST be set, otherwise CORS requests will fail
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean
