@@ -1,10 +1,12 @@
 package com.emmapraise.petvet.api;
 
+import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.payload.SpecialityToVetForm;
 import com.emmapraise.petvet.payload.VetDto;
 import com.emmapraise.petvet.service.VetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,8 +29,9 @@ public class VetController {
     public ResponseEntity<VetDto> saveVet(@RequestParam("coverImage") MultipartFile coverImage,
                                           @RequestParam("logo") MultipartFile logo,
                                           @RequestParam("document") MultipartFile document,
-                                          @ModelAttribute("vetDto") VetDto vetDto, BindingResult result) throws Exception {
-        return ResponseEntity.ok().body(vetService.saveVet(vetDto, coverImage, logo, document));
+                                          @ModelAttribute("vetDto") VetDto vetDto, BindingResult result,
+                                          @AuthenticationPrincipal AppUser currentUser) throws Exception {
+        return ResponseEntity.ok().body(vetService.saveVet(vetDto, currentUser, coverImage, logo, document));
     }
 
     @PostMapping("/vet/specialtyToVet")

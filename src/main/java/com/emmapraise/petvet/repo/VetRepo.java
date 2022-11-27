@@ -4,7 +4,7 @@ import com.emmapraise.petvet.entity.Vet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VetRepo extends JpaRepository<Vet, Long> {
-    Vet findByEmail(String email);
+//    Vet findByEmail(String email);
 
-    Boolean existsByEmail(String email);
+//    Boolean existsByEmail(String email);
 }

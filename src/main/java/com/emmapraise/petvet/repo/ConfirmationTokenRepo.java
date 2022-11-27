@@ -1,24 +1,23 @@
 package com.emmapraise.petvet.repo;
 
-import com.emmapraise.petvet.entity.AppUser;
+import com.emmapraise.petvet.entity.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Transactional(readOnly = true)
 @Repository
-public interface AppUserRepo extends JpaRepository<AppUser, Long> {
-    Optional<AppUser> findByEmail(String email);
-
-    void deleteByEmail(String email);
+public interface ConfirmationTokenRepo extends JpaRepository<ConfirmationToken, Long> {
+    Optional<ConfirmationToken> findByToken(String token);
 
     @Transactional
     @Modifying
-    @Query("UPDATE users a " +
-        "SET a.enabled = TRUE WHERE a.email = ?1")
-    int enableAppUser(String email);
+    @Query("UPDATE tokens c " +
+            "SET c.confirmedAt = ?2 " +
+    "WHERE c.token = ?1 ")
+    int updateConfirmedAt(String token, LocalDateTime confirmedAt);
 }
