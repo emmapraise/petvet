@@ -36,7 +36,7 @@ public class AppUserController {
 //    }
 
     @PostMapping("/user/register")
-    public String register(@RequestBody RegistrationRequest request) {
+    public AppUser register(@RequestBody RegistrationRequest request) {
         return registrationService.register(request);
     }
 

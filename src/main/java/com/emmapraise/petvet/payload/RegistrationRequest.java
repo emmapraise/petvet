@@ -6,13 +6,14 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @ToString
 public class RegistrationRequest {
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final String phone;
-    private final String password;
-    private final Role role;
+    private  String firstName;
+    private  String lastName;
+    private String email;
+    private String phone;
+    private String password;
+    private Role role;
 }

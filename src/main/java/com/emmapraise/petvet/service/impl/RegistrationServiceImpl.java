@@ -3,6 +3,7 @@ package com.emmapraise.petvet.service.impl;
 import com.emmapraise.petvet.email.EmailSenderService;
 import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.entity.ConfirmationToken;
+import com.emmapraise.petvet.entity.Role;
 import com.emmapraise.petvet.payload.EmailValidator;
 import com.emmapraise.petvet.payload.RegistrationRequest;
 import com.emmapraise.petvet.service.AppUserService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -23,12 +25,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     private final ConfirmationTokenService confirmationTokenService;
     @Override
-    public String register(RegistrationRequest request) {
+    public AppUser register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
         if (!isValidEmail){
             throw new IllegalStateException("email not valid");
         }
-        String token =  appUserService.signUpUser(
+
+        AppUser appUser =  appUserService.signUpUser(
                 new AppUser(
                         request.getFirstName(),
                         request.getLastName(),
@@ -38,10 +41,17 @@ public class RegistrationServiceImpl implements RegistrationService {
                         request.getRole()
                 )
         );
+        String token = UUID.randomUUID().toString();
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now().plusMinutes(15),
+                appUser
+        );
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
         String link = "http://localhost:8282/api/user/register/confirm?token=" + token;
         emailSenderService.send(request.getEmail(), buildEmail(request.getFirstName(), link), "Confirm your email");
 
-        return token;
+        return appUser;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.emmapraise.petvet.api;
 
 import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.payload.OwnerDto;
+import com.emmapraise.petvet.payload.RegistrationRequest;
 import com.emmapraise.petvet.service.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,8 @@ public class OwnerController {
 //    }
 
     @PostMapping("/owner")
-    public ResponseEntity<OwnerDto> saveOwner(@RequestBody OwnerDto ownerDto, @AuthenticationPrincipal AppUser currentUser) {
-        return ResponseEntity.ok().body(ownerService.saveOwner(ownerDto, currentUser));
+    public ResponseEntity<OwnerDto> saveOwner(@RequestBody OwnerDto ownerDto,  RegistrationRequest registrationRequest) {
+        return ResponseEntity.ok().body(ownerService.saveOwner(ownerDto, registrationRequest));
     }
 
 //    @PutMapping("/owner/{ownerId}")

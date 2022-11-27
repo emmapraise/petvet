@@ -10,7 +10,7 @@ public interface AppUserService {
 
 //    AppUser saveUser(AppUser appUser);
 
-    String signUpUser(AppUser appUser);
+    AppUser signUpUser(AppUser appUser);
 
     AppUser getUser(AppUser currentUser);
 
