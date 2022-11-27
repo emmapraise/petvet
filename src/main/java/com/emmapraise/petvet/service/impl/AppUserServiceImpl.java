@@ -50,15 +50,10 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 //    }
 
     @Override
-    public Optional<AppUser> getUser(String email) {
-        log.info("Retrieving user {} from the database", email);
-//        boolean exists = appUserRepo.existsByEmail(email);
-        Optional<AppUser> appUserOptional = appUserRepo.findByEmail(email);
-
-        if (appUserOptional.isPresent()) {
-            return appUserOptional;
-        }
-        throw new IllegalStateException("User is not present");
+    public AppUser getUser(AppUser currentUser) {
+        log.info("Retrieving user {} from the database", currentUser.getEmail());
+        return appUserRepo.findByEmail(currentUser.getEmail()).orElseThrow(()->
+                new IllegalStateException("No user present"));
     }
 
     public String deleteUser(String email) {

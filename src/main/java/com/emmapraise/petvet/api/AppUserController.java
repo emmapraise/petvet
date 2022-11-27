@@ -45,9 +45,9 @@ public class AppUserController {
         return registrationService.confirmToken(token);
     }
 
-    @GetMapping("/user/{email}")
-    public ResponseEntity<Optional<AppUser>> getUser(@PathVariable("email") String email) {
-        return ResponseEntity.ok().body(appUserService.getUser(email));
+    @GetMapping("/user")
+    public ResponseEntity<AppUser> getUser(@AuthenticationPrincipal AppUser currentUser) {
+        return ResponseEntity.ok().body(appUserService.getUser(currentUser));
     }
 
     @DeleteMapping("/user/{email}")

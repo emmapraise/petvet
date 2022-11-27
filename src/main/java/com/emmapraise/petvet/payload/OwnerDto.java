@@ -28,4 +28,6 @@ public class OwnerDto {
     private String address;
 
     private String city;
+
+    private AppUserDto user;
 }

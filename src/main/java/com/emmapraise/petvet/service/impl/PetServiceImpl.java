@@ -1,6 +1,6 @@
 package com.emmapraise.petvet.service.impl;
 
-import com.emmapraise.petvet.entity.Owner;
+import com.emmapraise.petvet.entity.PetOwner;
 import com.emmapraise.petvet.entity.PetType;
 import com.emmapraise.petvet.entity.Pet;
 import com.emmapraise.petvet.payload.PetDto;
@@ -40,9 +40,9 @@ public class PetServiceImpl implements PetService {
     public PetDto addPet(long ownerId, String categoryName, PetDto petDto) {
         log.info("Saving pets");
         Pet pet = mapToEntity(petDto);
-        Owner owner = ownerRepo.findById(ownerId).orElseThrow(() -> new IllegalStateException("Owner not found "));
+        PetOwner petOwner = ownerRepo.findById(ownerId).orElseThrow(() -> new IllegalStateException("Owner not found "));
         PetType pet_type = petTypeRepo.findByName(categoryName);
-        pet.setOwner(owner);
+        pet.setPetOwner(petOwner);
         pet.setType(pet_type);
         return mapToDto(petRepo.save(pet));
     }

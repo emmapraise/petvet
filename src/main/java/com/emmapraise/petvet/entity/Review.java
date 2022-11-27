@@ -22,5 +22,5 @@ public class Review extends BaseEntity{
     private Appointment appointment;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    private Owner owner;
+    private PetOwner petOwner;
 }
