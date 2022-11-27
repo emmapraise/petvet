@@ -7,6 +7,7 @@ import com.emmapraise.petvet.service.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class OwnerController {
 //    }
 
     @PostMapping("/owner")
-    public ResponseEntity<OwnerDto> saveOwner(@RequestBody OwnerDto ownerDto,  RegistrationRequest registrationRequest) {
-        return ResponseEntity.ok().body(ownerService.saveOwner(ownerDto, registrationRequest));
+    public ResponseEntity<OwnerDto> saveOwner(@RequestBody OwnerDto ownerDto) {
+        return ResponseEntity.ok().body(ownerService.saveOwner(ownerDto));
     }
 
 //    @PutMapping("/owner/{ownerId}")

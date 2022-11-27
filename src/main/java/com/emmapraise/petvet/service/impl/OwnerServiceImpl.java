@@ -42,9 +42,11 @@ public class OwnerServiceImpl implements OwnerService {
 //    }
 
     @Override
-    public OwnerDto saveOwner(OwnerDto ownerDto, RegistrationRequest registrationRequest) {
+    public OwnerDto saveOwner(OwnerDto ownerDto) {
         log.info("Saving Owner entity to the database");
-        AppUser appUser = registrationService.register(registrationRequest);
+        AppUser appUser = registrationService.register(new RegistrationRequest(
+                ownerDto.getFirstName(), ownerDto.getLastName(),
+                ownerDto.getEmail(), ownerDto.getPhone(), ownerDto.getPassword(), ownerDto.getRole()));
         PetOwner petOwner = mapToEntity(ownerDto);
         petOwner.setUser(appUser);
         return mapToDto(ownerRepo.save(petOwner));

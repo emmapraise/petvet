@@ -13,7 +13,7 @@ public interface OwnerService {
 
 //    OwnerDto updateOwner(long ownerId, OwnerDto ownerDto);
 
-    OwnerDto saveOwner(OwnerDto ownerDto, RegistrationRequest registrationRequest);
+    OwnerDto saveOwner(OwnerDto ownerDto);
 
     String deleteOwner(long ownerId);
 }
