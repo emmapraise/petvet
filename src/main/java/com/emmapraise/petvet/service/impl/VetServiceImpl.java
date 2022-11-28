@@ -4,10 +4,12 @@ import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.entity.Attach;
 import com.emmapraise.petvet.entity.Specialty;
 import com.emmapraise.petvet.entity.Vet;
+import com.emmapraise.petvet.payload.RegistrationRequest;
 import com.emmapraise.petvet.payload.VetDto;
 import com.emmapraise.petvet.repo.SpecialtyRepo;
 import com.emmapraise.petvet.repo.VetRepo;
 import com.emmapraise.petvet.service.AttachService;
+import com.emmapraise.petvet.service.RegistrationService;
 import com.emmapraise.petvet.service.VetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,8 @@ import java.util.List;
 public class VetServiceImpl implements VetService {
 
     private final VetRepo vetRepo;
+
+    private final RegistrationService registrationService;
 
     private final AttachService attachService;
 
@@ -46,10 +50,13 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
-    public VetDto saveVet(VetDto vetDto, AppUser currentUser, MultipartFile... files) throws Exception {
+    public VetDto saveVet(VetDto vetDto, MultipartFile... files) throws Exception {
         log.info("Saving new vet");
+        AppUser appUser = registrationService.register(new RegistrationRequest(
+                vetDto.getFirstName(), vetDto.getLastName(),
+                vetDto.getEmail(), vetDto.getPhone(), vetDto.getPassword(), vetDto.getRole()));
         Vet vet = mapToEntity(vetDto);
-        vet.setUser(currentUser);
+        vet.setUser(appUser);
         if (files[0] != null) {
             log.info("Uploading Cover image {}", files[0]);
             Attach coverImage=  attachService.upload(files[0]);

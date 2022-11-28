@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/user/register/**",
                             "/api/**/all", "/api/vet/**",
                             "/api/download/**", "/swagger-ui/**",
-                            "/v3/api-docs", "/api/owner")
+                            "/v3/api-docs", "/api/owner", "/api/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated()

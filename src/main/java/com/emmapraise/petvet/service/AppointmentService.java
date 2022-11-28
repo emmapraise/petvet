@@ -10,6 +10,8 @@ public interface AppointmentService {
 
     List<AppointmentDto> getAppointments();
 
+    List<AppointmentDto> getAppointmentsByOwner(long ownerId);
+
     List<AppointmentDto> getAppointmentByStatus(Status status);
 
     AppointmentDto changeAppointmentStatus(long appointmentId, Status status);
