@@ -50,9 +50,9 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 //    }
 
     @Override
-    public AppUser getUser(AppUser currentUser) {
-        log.info("Retrieving user {} from the database", currentUser.getEmail());
-        return appUserRepo.findByEmail(currentUser.getEmail()).orElseThrow(()->
+    public AppUser getUser(long userId) {
+        log.info("Retrieving user {} from the database", userId);
+        return appUserRepo.findById(userId).orElseThrow(()->
                 new IllegalStateException("No user present"));
     }
 
