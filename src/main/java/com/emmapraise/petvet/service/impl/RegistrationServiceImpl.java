@@ -3,6 +3,7 @@ package com.emmapraise.petvet.service.impl;
 import com.emmapraise.petvet.email.EmailSenderService;
 import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.entity.ConfirmationToken;
+import com.emmapraise.petvet.entity.Role;
 import com.emmapraise.petvet.payload.EmailValidator;
 import com.emmapraise.petvet.payload.RegistrationRequest;
 import com.emmapraise.petvet.service.AppUserService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -23,12 +25,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     private final ConfirmationTokenService confirmationTokenService;
     @Override
-    public String register(RegistrationRequest request) {
+    public AppUser register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
         if (!isValidEmail){
             throw new IllegalStateException("email not valid");
         }
-        String token =  appUserService.signUpUser(
+
+        AppUser appUser =  appUserService.signUpUser(
                 new AppUser(
                         request.getFirstName(),
                         request.getLastName(),
@@ -38,10 +41,17 @@ public class RegistrationServiceImpl implements RegistrationService {
                         request.getRole()
                 )
         );
+        String token = UUID.randomUUID().toString();
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now().plusMinutes(15),
+                appUser
+        );
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
         String link = "http://localhost:8282/api/user/register/confirm?token=" + token;
         emailSenderService.send(request.getEmail(), buildEmail(request.getFirstName(), link), "Confirm your email");
 
-        return token;
+        return appUser;
     }
 
     @Override
@@ -118,7 +128,9 @@ public class RegistrationServiceImpl implements RegistrationService {
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
                 "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
                 "        \n" +
-                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Thank you for registering. Please click on the below link to activate your account: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Activate Now</a> </p></blockquote>\n Link will expire in 15 minutes. <p>See you soon</p>" +
+                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Thank you for registering. Please click on the below link to activate your account: </p>" +
+                "<blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Activate Now</a> </p></blockquote>" +
+                "\n Link will expire in 15 minutes. <p>Best Regards</p>" +
                 "        \n" +
                 "      </td>\n" +
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +

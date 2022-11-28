@@ -35,8 +35,13 @@ public class AppointmentController {
         return ResponseEntity.ok().body(appointmentService.getAppointmentByStatus(status));
     }
 
-    @PatchMapping("/appointment/{appointmentId}/status/{status}")
-    public ResponseEntity<AppointmentDto> changeAppointmentStatus(@PathVariable("status") Status status, @PathVariable("appointmentId") long appointmentId){
+    @GetMapping("/appointment/{appointmentId}/accept")
+    public ResponseEntity<AppointmentDto> changeAppointmentStatus(@RequestParam("status") Status status, @PathVariable("appointmentId") long appointmentId){
         return ResponseEntity.ok().body(appointmentService.changeAppointmentStatus(appointmentId, status));
+    }
+
+    @GetMapping("/appointment/owner/{ownerId}")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByOwner(@PathVariable("ownerId") long ownerId){
+        return ResponseEntity.ok().body(appointmentService.getAppointmentsByOwner(ownerId));
     }
 }

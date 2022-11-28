@@ -23,7 +23,7 @@ public class AppUser extends BaseEntity implements UserDetails {
     private String password;
     @Column(unique = true)
     private String phone;
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     private Role roles;
     private Boolean locked =false;
     private Boolean enabled = false;

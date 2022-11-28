@@ -2,10 +2,7 @@ package com.emmapraise.petvet.service.impl;
 
 import com.emmapraise.petvet.email.EmailSenderService;
 import com.emmapraise.petvet.email.Templates.AppointmentTemplate;
-import com.emmapraise.petvet.entity.Appointment;
-import com.emmapraise.petvet.entity.Pet;
-import com.emmapraise.petvet.entity.Status;
-import com.emmapraise.petvet.entity.Vet;
+import com.emmapraise.petvet.entity.*;
 import com.emmapraise.petvet.payload.AppointmentDto;
 import com.emmapraise.petvet.repo.*;
 import com.emmapraise.petvet.service.AppointmentService;
@@ -26,6 +23,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     private final PetRepo petRepo;
     private final VetRepo vetRepo;
+    private final OwnerRepo ownerRepo;
     private final EmailSenderService emailSenderService;
 
     private final AppointmentTemplate appointmentTemplate;
@@ -45,9 +43,10 @@ public class AppointmentServiceImpl implements AppointmentService {
                 appointmentTemplate.buildOwnerEmail(pet.getPetOwner().getUser().getFirstName(),
                         vet.getName(), pet.getName(), appointment.getDate()), "Appointment Booked");
 
-        String link = String.format("http://localhost:8282/api/appointment/%d/status/%s", app.getId(), Status.ACCEPTED);
+//        String link = String.format("http:localhost:8282/api/appointment/%d/status=%s", app.getId(), Status.ACCEPTED);
+        String link = "http://localhost:8282/api/appointment/"+app.getId()+"/accept?status="+Status.ACCEPTED;
 
-        emailSenderService.send(pet.getPetOwner().getUser().getEmail(),
+        emailSenderService.send(appointment.getVet().getUser().getEmail(),
                 appointmentTemplate.buildVetEmail(pet.getPetOwner().getUser().getFirstName(),
                         vet.getName(), pet.getName(), appointment.getDate(), link), "You have a Booked Appointment");
         log.info("Appointment Saved Successfully");
@@ -58,6 +57,12 @@ public class AppointmentServiceImpl implements AppointmentService {
     public List<AppointmentDto> getAppointments() {
         log.info("Get all appointment");
         return appointmentRepo.findAll().stream().map(this::mapToDto).toList();
+    }
+
+    @Override
+    public List<AppointmentDto> getAppointmentsByOwner(long ownerId) {
+        PetOwner owner = ownerRepo.findById(ownerId).orElseThrow(()-> new IllegalStateException("No pet owner found"));
+        return appointmentRepo.findAppointmentsByPet_PetOwner(owner).stream().map(this::mapToDto).toList();
     }
 
     @Override @Transactional

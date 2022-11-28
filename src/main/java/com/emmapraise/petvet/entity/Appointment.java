@@ -27,7 +27,4 @@ public class Appointment extends BaseEntity {
     private Date date;
 
     private Status status = Status.PENDING;
-
-    @OneToMany(mappedBy = "appointment")
-    private List<Review> reviews;
 }

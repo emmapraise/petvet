@@ -9,7 +9,7 @@ import java.util.List;
 public interface VetService {
     List<VetDto> getVets();
 
-    VetDto saveVet(VetDto vetDto, AppUser currentUser, MultipartFile... files) throws Exception;
+    VetDto saveVet(VetDto vetDto, MultipartFile... files) throws Exception;
 
     VetDto getVet(long vetId);
 

@@ -3,8 +3,10 @@ package com.emmapraise.petvet.service.impl;
 import com.emmapraise.petvet.entity.AppUser;
 import com.emmapraise.petvet.entity.PetOwner;
 import com.emmapraise.petvet.payload.OwnerDto;
+import com.emmapraise.petvet.payload.RegistrationRequest;
 import com.emmapraise.petvet.repo.OwnerRepo;
 import com.emmapraise.petvet.service.OwnerService;
+import com.emmapraise.petvet.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -19,6 +21,8 @@ import java.util.List;
 @Slf4j
 public class OwnerServiceImpl implements OwnerService {
     private final OwnerRepo ownerRepo;
+
+    private final RegistrationService registrationService;
 
     private final ModelMapper mapper = new ModelMapper();
 
@@ -38,10 +42,13 @@ public class OwnerServiceImpl implements OwnerService {
 //    }
 
     @Override
-    public OwnerDto saveOwner(OwnerDto ownerDto, AppUser currentUser) {
+    public OwnerDto saveOwner(OwnerDto ownerDto) {
         log.info("Saving Owner entity to the database");
+        AppUser appUser = registrationService.register(new RegistrationRequest(
+                ownerDto.getFirstName(), ownerDto.getLastName(),
+                ownerDto.getEmail(), ownerDto.getPhone(), ownerDto.getPassword(), ownerDto.getRole()));
         PetOwner petOwner = mapToEntity(ownerDto);
-        petOwner.setUser(currentUser);
+        petOwner.setUser(appUser);
         return mapToDto(ownerRepo.save(petOwner));
     }
 

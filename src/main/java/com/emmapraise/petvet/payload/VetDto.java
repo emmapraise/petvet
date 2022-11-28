@@ -1,6 +1,7 @@
 package com.emmapraise.petvet.payload;
 
 import com.emmapraise.petvet.entity.AppUser;
+import com.emmapraise.petvet.entity.Role;
 import com.emmapraise.petvet.entity.Specialty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,12 @@ import java.util.Set;
 @AllArgsConstructor
 public class VetDto {
     private long id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+    private String password;
+    private Role role = Role.VET;
     @NotEmpty
     private String name;
 
@@ -32,14 +39,14 @@ public class VetDto {
     @NotEmpty
     private String address;
 
-    @NotEmpty
-    @Column(unique = true)
-    private String phone;
+//    @NotEmpty
+//    @Column(unique = true)
+//    private String phone;
 
-    @NotEmpty
-    @Column(unique = true)
-    @Email
-    private String email;
+//    @NotEmpty
+//    @Column(unique = true)
+//    @Email
+//    private String email;
 
     @NotEmpty
     @Digits(fraction = 2, integer = 10)
@@ -47,9 +54,9 @@ public class VetDto {
 
     private AttachDto document;
 
-    private Boolean isAvailable = false;
+    private Boolean isAvailable = true;
 
     private Boolean isApproved = false;
     private Set<Specialty> specialties;
-    private AppUserDto user;
+    private RegistrationRequest user;
 }

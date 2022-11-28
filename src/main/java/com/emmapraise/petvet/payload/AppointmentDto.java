@@ -22,5 +22,4 @@ public class AppointmentDto {
     private VetDto vet;
     private Double price;
     private Status status = Status.PENDING;
-    private List<ReviewDto> reviews;
 }

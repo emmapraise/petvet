@@ -38,19 +38,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().configurationSource(corsConfigurationSource())
+        http
+                .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                    .antMatchers("/api/user/register/**", "/api/**/all")
+                    .antMatchers("/api/user/register/**",
+                            "/api/**/all", "/api/vet/**",
+                            "/api/download/**", "/swagger-ui/**",
+                            "/v3/api-docs", "/api/owner", "/api/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated()
                 .and()
-                .formLogin()
-                    .successHandler(authenticationSuccessHandler())
-                    .permitAll();
+                .formLogin();
+//                    .successHandler(authenticationSuccessHandler());
+//                    .permitAll();
     }
 
     @Bean

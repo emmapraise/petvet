@@ -80,7 +80,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public String signUpUser(AppUser appUser) {
+    public AppUser signUpUser(AppUser appUser) {
         boolean userExist =  appUserRepo.findByEmail(appUser.getEmail()).isPresent();
         if (userExist){
             throw new IllegalStateException("Email already taken");
@@ -88,14 +88,6 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         String encodedPassword = passwordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
 
-        appUserRepo.save(appUser);
-        String token = UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(
-                token,
-                LocalDateTime.now().plusMinutes(15),
-                appUser
-        );
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
-        return token;
+        return appUserRepo.save(appUser);
     }
 }
