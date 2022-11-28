@@ -18,7 +18,7 @@ public class HomeController {
     private final AppUserService appUserService;
 
     @GetMapping
-    public ResponseEntity<AppUser> getUser(@AuthenticationPrincipal AppUser currentUser) {
-        return ResponseEntity.ok().body(appUserService.getUser(currentUser));
+    public ResponseEntity<AppUser> getUser(long userId) {
+        return ResponseEntity.ok().body(appUserService.getUser(userId));
     }
 }

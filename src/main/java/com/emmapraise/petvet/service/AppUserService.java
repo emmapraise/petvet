@@ -12,7 +12,7 @@ public interface AppUserService {
 
     AppUser signUpUser(AppUser appUser);
 
-    AppUser getUser(AppUser currentUser);
+    AppUser getUser(long userId);
 
     String deleteUser(String email);
 
