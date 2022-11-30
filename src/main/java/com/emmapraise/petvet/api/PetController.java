@@ -25,6 +25,11 @@ public class PetController {
         return ResponseEntity.ok().body(petService.getPets());
     }
 
+    @GetMapping("/pet/owner/{ownerId}")
+    public ResponseEntity<List<PetDto>> getPetsByOwner(@PathVariable("ownerId") long ownerId) {
+        return ResponseEntity.ok().body(petService.getPetsByOwner(ownerId));
+    }
+
     @PostMapping("/pet/owner/{ownerId}/category/{categoryName}")
     public ResponseEntity<PetDto> addPet(@PathVariable(value = "ownerId") long ownerId,
                                          @PathVariable(value = "categoryName") String categoryName,

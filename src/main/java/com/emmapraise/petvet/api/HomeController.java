@@ -1,24 +1,31 @@
 package com.emmapraise.petvet.api;
 
 import com.emmapraise.petvet.entity.AppUser;
-import com.emmapraise.petvet.service.AppUserService;
+import com.emmapraise.petvet.entity.PetOwner;
+import com.emmapraise.petvet.payload.DashboardDto;
+import com.emmapraise.petvet.repo.AppointmentRepo;
+import com.emmapraise.petvet.repo.OwnerRepo;
+import com.emmapraise.petvet.repo.PetRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 public class HomeController {
-    private final AppUserService appUserService;
+    private final AppointmentRepo appointmentRepo;
+    private final OwnerRepo ownerRepo;
 
-    @GetMapping
-    public ResponseEntity<AppUser> getUser(long userId) {
-        return ResponseEntity.ok().body(appUserService.getUser(userId));
+    private final PetRepo petRepo;
+
+    @GetMapping("/dashboard/user/{userId}")
+    public ResponseEntity<DashboardDto> getUser(@PathVariable("userId") long userId) {
+        PetOwner petOwner = ownerRepo.findByUserId(userId).orElseThrow(() -> new IllegalStateException("No pet owner found"));;
+        int appointmentCount = appointmentRepo.findAppointmentsByPet_PetOwner(petOwner).size();
+        int petCount = petRepo.findPetsByPetOwner_UserId(userId).size();
+        DashboardDto dashboardDto = new DashboardDto(appointmentCount, petCount);
+        return ResponseEntity.ok().body(dashboardDto);
     }
 }

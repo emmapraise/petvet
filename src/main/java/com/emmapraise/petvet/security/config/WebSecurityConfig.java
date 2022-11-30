@@ -1,18 +1,26 @@
 package com.emmapraise.petvet.security.config;
 
+//import com.emmapraise.petvet.security.PasswordEncoder;
 import com.emmapraise.petvet.service.AppUserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -25,37 +33,60 @@ import static java.util.Collections.singletonList;
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private AppUserService appUserService;
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
+    @Autowired
+    private JwtAuthenticationEntryPoint authenticationEntryPoint;
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter();
+    }
+
+//    private final BCryptPasswordEncoder passwordEncoder;
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider());
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
+
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors().configurationSource(corsConfigurationSource())
+                .csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
                 .and()
-                .csrf()
-                .disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                    .antMatchers("/api/user/register/**",
-                            "/api/**/all", "/api/vet/**",
-                            "/api/download/**", "/swagger-ui/**",
-                            "/v3/api-docs", "/api/owner", "/api/**")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated()
-                .and()
-                .formLogin();
-//                    .successHandler(authenticationSuccessHandler());
-//                    .permitAll();
+                .antMatchers(HttpMethod.GET, "/api/**").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/**").permitAll()
+                .antMatchers("/api/owner").permitAll()
+                .antMatchers("/api/user/**").permitAll()
+                .antMatchers("/").permitAll()
+                .anyRequest()
+                .authenticated();
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
 
     @Bean
     public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler(){
@@ -77,11 +108,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService((UserDetailsService) appUserService);
-        return provider;
-    }
+//    @Bean
+//    public DaoAuthenticationProvider daoAuthenticationProvider(){
+//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+//        provider.setPasswordEncoder(bCryptPasswordEncoder);
+//        provider.setUserDetailsService((UserDetailsService) appUserService);
+//        return provider;
+//    }
 }

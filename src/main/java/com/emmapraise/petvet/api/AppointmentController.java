@@ -35,6 +35,11 @@ public class AppointmentController {
         return ResponseEntity.ok().body(appointmentService.getAppointmentByStatus(status));
     }
 
+    @GetMapping("/appointment/vet/{userId}")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentByUser(@PathVariable("userId") long userId){
+        return ResponseEntity.ok().body(appointmentService.getAppointmentsByUser(userId));
+    }
+
     @GetMapping("/appointment/{appointmentId}/accept")
     public ResponseEntity<AppointmentDto> changeAppointmentStatus(@RequestParam("status") Status status, @PathVariable("appointmentId") long appointmentId){
         return ResponseEntity.ok().body(appointmentService.changeAppointmentStatus(appointmentId, status));

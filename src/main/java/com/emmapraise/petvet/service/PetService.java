@@ -9,6 +9,8 @@ public interface PetService {
 
     PetDto getPet(long petId);
 
+    List<PetDto> getPetsByOwner(long ownerId);
+
     String deletePet(long petId);
 
     PetDto updatePet(long petId, PetDto petDto);

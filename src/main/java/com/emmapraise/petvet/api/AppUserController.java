@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +42,10 @@ public class AppUserController {
     }
 
     @GetMapping("/user/register/confirm")
-    public String confirm(@RequestParam("token") String token) {
-        return registrationService.confirmToken(token);
+    public void confirm(@RequestParam("token") String token, HttpServletResponse httpServletResponse) {
+        registrationService.confirmToken(token);
+        httpServletResponse.setHeader("Location", "http://localhost:3000/login");
+        httpServletResponse.setStatus(302);
     }
 
     @GetMapping("/user/{id}")

@@ -44,7 +44,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                         vet.getName(), pet.getName(), appointment.getDate()), "Appointment Booked");
 
 //        String link = String.format("http:localhost:8282/api/appointment/%d/status=%s", app.getId(), Status.ACCEPTED);
-        String link = "http://localhost:8282/api/appointment/"+app.getId()+"/accept?status="+Status.ACCEPTED;
+        String link = "http://localhost:3000/approve?appId="+app.getId();
 
         emailSenderService.send(appointment.getVet().getUser().getEmail(),
                 appointmentTemplate.buildVetEmail(pet.getPetOwner().getUser().getFirstName(),
@@ -60,9 +60,14 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public List<AppointmentDto> getAppointmentsByOwner(long ownerId) {
-        PetOwner owner = ownerRepo.findById(ownerId).orElseThrow(()-> new IllegalStateException("No pet owner found"));
+    public List<AppointmentDto> getAppointmentsByOwner(long userId) {
+        PetOwner owner = ownerRepo.findByUserId(userId).orElseThrow(() -> new IllegalStateException("No Pet Owner found"));
         return appointmentRepo.findAppointmentsByPet_PetOwner(owner).stream().map(this::mapToDto).toList();
+    }
+
+    @Override
+    public List<AppointmentDto> getAppointmentsByUser(long userId) {
+        return appointmentRepo.findAppointmentsByVet_User_Id(userId).stream().map(this::mapToDto).toList();
     }
 
     @Override @Transactional
