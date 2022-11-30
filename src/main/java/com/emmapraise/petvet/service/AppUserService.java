@@ -8,9 +8,13 @@ import java.util.Optional;
 public interface AppUserService {
     List<AppUser> getUsers();
 
-    AppUser saveUser(AppUser appUser);
+//    AppUser saveUser(AppUser appUser);
 
-    Optional<AppUser> getUser(String email);
+    AppUser signUpUser(AppUser appUser);
+
+    AppUser getUser(long userId);
 
     String deleteUser(String email);
+
+    int enableAppUser(String email);
 }
