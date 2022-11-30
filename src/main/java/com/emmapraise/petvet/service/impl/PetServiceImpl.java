@@ -40,7 +40,7 @@ public class PetServiceImpl implements PetService {
     public PetDto addPet(long ownerId, String categoryName, PetDto petDto) {
         log.info("Saving pets");
         Pet pet = mapToEntity(petDto);
-        PetOwner petOwner = ownerRepo.findById(ownerId).orElseThrow(() -> new IllegalStateException("Owner not found "));
+        PetOwner petOwner = ownerRepo.findByUserId(ownerId).orElseThrow(() -> new IllegalStateException("No Pet Owner found"));
         PetType pet_type = petTypeRepo.findByName(categoryName);
         pet.setPetOwner(petOwner);
         pet.setType(pet_type);
@@ -51,6 +51,11 @@ public class PetServiceImpl implements PetService {
     public PetDto getPet(long petId) {
         Pet pet = petRepo.findById(petId).orElseThrow(() -> new IllegalStateException("There is no pet with the id " + petId));
         return mapToDto(pet);
+    }
+
+    @Override
+    public List<PetDto> getPetsByOwner(long ownerId) {
+        return petRepo.findPetsByPetOwner_UserId(ownerId).stream().map(this::mapToDto).toList();
     }
 
     @Override

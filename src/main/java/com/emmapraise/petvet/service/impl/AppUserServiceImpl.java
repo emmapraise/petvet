@@ -8,17 +8,12 @@ import com.emmapraise.petvet.service.AppUserService;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 //@RequiredArgsConstructor
@@ -26,9 +21,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @Transactional
 @Slf4j
-public class AppUserServiceImpl implements AppUserService, UserDetailsService {
+public class AppUserServiceImpl implements AppUserService {
     private final AppUserRepo appUserRepo;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
 
     private final static String USER_NOT_FOUND_MSG = "User with the email %s not found";
@@ -71,13 +66,13 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         return appUserRepo.enableAppUser(email);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String email)
-            throws UsernameNotFoundException {
-        return appUserRepo.findByEmail(email)
-                .orElseThrow(()-> new UsernameNotFoundException(
-                        String.format(USER_NOT_FOUND_MSG, email)));
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String email)
+//            throws UsernameNotFoundException {
+//        return appUserRepo.findByEmail(email)
+//                .orElseThrow(()-> new UsernameNotFoundException(
+//                        String.format(USER_NOT_FOUND_MSG, email)));
+//    }
 
     @Override
     public AppUser signUpUser(AppUser appUser) {
@@ -86,6 +81,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
             throw new IllegalStateException("Email already taken");
         }
         String encodedPassword = passwordEncoder.encode(appUser.getPassword());
+
         appUser.setPassword(encodedPassword);
 
         return appUserRepo.save(appUser);

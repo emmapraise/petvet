@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -48,7 +49,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 appUser
         );
         confirmationTokenService.saveConfirmationToken(confirmationToken);
-        String link = "http://localhost:8282/api/user/register/confirm?token=" + token;
+        String link = "http://localhost:3000/confirm?token=" + token;
         emailSenderService.send(request.getEmail(), buildEmail(request.getFirstName(), link), "Confirm your email");
 
         return appUser;
