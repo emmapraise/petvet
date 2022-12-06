@@ -10,7 +10,7 @@ import java.util.List;
 public interface AppointmentRepo extends JpaRepository<Appointment, Long> {
     Appointment findByUuid(String uuid);
 
-    List<Appointment> findAppointmentsByPet_PetOwner(PetOwner pet_petOwner);
+    List<Appointment> findAppointmentsByPet_PetOwnerOrderByCreatedAtDesc(PetOwner pet_petOwner);
 
     List<Appointment> findAppointmentsByVet_User_Id(long vet_user_id);
 

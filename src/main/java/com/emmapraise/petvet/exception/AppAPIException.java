@@ -7,23 +7,23 @@ public class AppAPIException extends RuntimeException {
     private final HttpStatus status;
     private final String message;
 
-    public AppAPIException(HttpStatus status, String message){
+    public AppAPIException(HttpStatus status, String message) {
         this.status = status;
         this.message = message;
     }
 
-    public AppAPIException(String message, HttpStatus status, String message1){
+    public AppAPIException(String message, HttpStatus status, String message1) {
         super(message);
         this.status = status;
         this.message = message1;
     }
 
-    public HttpStatus getStatus(){
+    public HttpStatus getStatus() {
         return status;
     }
 
     @Override
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 }

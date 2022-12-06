@@ -20,7 +20,7 @@ public class PetOwner extends BaseEntity {
 //    @Column(name = "last_name")
 //    private String lastName;
 
-//    @Column(name = "email", unique = true)
+    //    @Column(name = "email", unique = true)
 //    private String email;
 //    @Column(name = "telephone", unique = true)
 //    private String phone;

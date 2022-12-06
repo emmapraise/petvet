@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -29,7 +30,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
     @Override
     public String deleteSpeciality(long specialtyId) {
-        if (specialtyRepo.existsById(specialtyId)){
+        if (specialtyRepo.existsById(specialtyId)) {
             specialtyRepo.deleteById(specialtyId);
             return "Specialty Deleted";
         }

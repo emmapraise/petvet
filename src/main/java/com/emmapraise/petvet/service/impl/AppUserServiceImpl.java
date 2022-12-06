@@ -47,7 +47,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public AppUser getUser(long userId) {
         log.info("Retrieving user {} from the database", userId);
-        return appUserRepo.findById(userId).orElseThrow(()->
+        return appUserRepo.findById(userId).orElseThrow(() ->
                 new IllegalStateException("No user present"));
     }
 
@@ -76,8 +76,8 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public AppUser signUpUser(AppUser appUser) {
-        boolean userExist =  appUserRepo.findByEmail(appUser.getEmail()).isPresent();
-        if (userExist){
+        boolean userExist = appUserRepo.findByEmail(appUser.getEmail()).isPresent();
+        if (userExist) {
             throw new IllegalStateException("Email already taken");
         }
         String encodedPassword = passwordEncoder.encode(appUser.getPassword());

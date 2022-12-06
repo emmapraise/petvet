@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ConfirmationTokenService {
     private final ConfirmationTokenRepo confirmationTokenRepo;
 
-    public void saveConfirmationToken(ConfirmationToken token){
+    public void saveConfirmationToken(ConfirmationToken token) {
         confirmationTokenRepo.save(token);
     }
 

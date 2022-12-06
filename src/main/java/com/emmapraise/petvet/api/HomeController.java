@@ -22,8 +22,9 @@ public class HomeController {
 
     @GetMapping("/dashboard/user/{userId}")
     public ResponseEntity<DashboardDto> getUser(@PathVariable("userId") long userId) {
-        PetOwner petOwner = ownerRepo.findByUserId(userId).orElseThrow(() -> new IllegalStateException("No pet owner found"));;
-        int appointmentCount = appointmentRepo.findAppointmentsByPet_PetOwner(petOwner).size();
+        PetOwner petOwner = ownerRepo.findByUserId(userId).orElseThrow(() -> new IllegalStateException("No pet owner found"));
+        ;
+        int appointmentCount = appointmentRepo.findAppointmentsByPet_PetOwnerOrderByCreatedAtDesc(petOwner).size();
         int petCount = petRepo.findPetsByPetOwner_UserId(userId).size();
         DashboardDto dashboardDto = new DashboardDto(appointmentCount, petCount);
         return ResponseEntity.ok().body(dashboardDto);

@@ -1,6 +1,7 @@
 package com.emmapraise.petvet.payload;
 
 import com.emmapraise.petvet.entity.Role;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,13 +17,25 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 public class OwnerDto {
     private long id;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotEmpty
     private String firstName;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotEmpty
     private String lastName;
+    @Email
+    @NotEmpty
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotEmpty
     private String phone;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotEmpty
     private String password;
     private Role role = Role.USER;
     private String address;
     private String city;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private RegistrationRequest user;
 }

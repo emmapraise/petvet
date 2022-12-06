@@ -73,7 +73,7 @@ public class AppointmentTemplate {
                 "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
                 "        \n" +
                 "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + vetName + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> " +
-                "           You have an appointment with "+ ownerName+"  pet "+ petName+ " on "+ convertDate(date) +"" +
+                "           You have an appointment with " + ownerName + "  pet " + petName + " on " + convertDate(date) + "" +
                 "           Please click on the below link to approve the booking: </p>" +
                 "<blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Accept appointment</a> </p></blockquote>" +
                 "\n <p>Best Regards</p>" +
@@ -147,7 +147,7 @@ public class AppointmentTemplate {
                 "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
                 "        \n" +
                 "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + ownerName + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> " +
-                "           You book an appointment with "+ vetName+" for your pet "+ petName+ " on "+ convertDate(date) +"" +
+                "           You book an appointment with " + vetName + " for your pet " + petName + " on " + convertDate(date) + "" +
                 "        \n" +
                 "      </td>\n" +
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +

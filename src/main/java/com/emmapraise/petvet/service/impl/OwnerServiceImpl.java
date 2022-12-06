@@ -45,7 +45,7 @@ public class OwnerServiceImpl implements OwnerService {
     public OwnerDto saveOwner(OwnerDto ownerDto) {
         log.info("Saving Owner entity to the database");
         AppUser appUser = registrationService.register(new RegistrationRequest(
-                ownerDto.getFirstName(), ownerDto.getLastName(),
+                ownerDto.getId(), ownerDto.getFirstName(), ownerDto.getLastName(),
                 ownerDto.getEmail(), ownerDto.getPhone(), ownerDto.getPassword(), ownerDto.getRole()));
         PetOwner petOwner = mapToEntity(ownerDto);
         petOwner.setUser(appUser);

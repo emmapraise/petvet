@@ -43,7 +43,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDto updateTransactionStatus(String ref, Status status) {
-        if (transactionRepo.existsByRef(ref)){
+        if (transactionRepo.existsByRef(ref)) {
             Transaction transaction = transactionRepo.findByRef(ref);
             transaction.setStatus(status);
             return mapToDto(transactionRepo.save(transaction));
@@ -54,7 +54,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public TransactionDto acceptPayment(String appointmentUuid, TransactionDto transactionDto) {
         log.info("Transaction saved into the database");
-        if (transactionRepo.existsByRef(transactionDto.getRef())){
+        if (transactionRepo.existsByRef(transactionDto.getRef())) {
             throw new IllegalStateException("Reference code already exists");
         }
         Transaction transaction = mapToEntity(transactionDto);
@@ -66,19 +66,18 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public PaymentResponse verifyPayment(String ref) {
         //Check if transaction of that ref exist in the database
-        if (transactionRepo.existsByRef(ref)){
+        if (transactionRepo.existsByRef(ref)) {
             Transaction transaction = transactionRepo.findByRef(ref);
             try {
                 String uri = "https://qa.interswitchng.com/collections/api/v1/gettransaction.json?merchantcode="
-                        +merchant_code+"&transactionreference="+ref+"&amount="+transaction.getPrice();
+                        + merchant_code + "&transactionreference=" + ref + "&amount=" + transaction.getPrice();
                 log.info("The ref code is {} while the price is {}", ref, transaction.getPrice());
                 RestTemplate restTemplate = new RestTemplate();
                 PaymentResponse response = restTemplate.getForObject(uri, PaymentResponse.class);
                 log.info("The response is {}", response);
                 log.info("{}", restTemplate.getForObject(uri, PaymentResponse.class));
                 return response;
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }

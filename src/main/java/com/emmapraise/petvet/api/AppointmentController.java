@@ -26,27 +26,27 @@ public class AppointmentController {
     }
 
     @GetMapping("/appointment/all")
-    public ResponseEntity<List<AppointmentDto>> getAppointments(){
+    public ResponseEntity<List<AppointmentDto>> getAppointments() {
         return ResponseEntity.ok().body(appointmentService.getAppointments());
     }
 
     @GetMapping("/appointment/{status}")
-    public ResponseEntity<List<AppointmentDto>> getAppointmentsByStatus(@PathVariable("status") Status status){
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByStatus(@PathVariable("status") Status status) {
         return ResponseEntity.ok().body(appointmentService.getAppointmentByStatus(status));
     }
 
     @GetMapping("/appointment/vet/{userId}")
-    public ResponseEntity<List<AppointmentDto>> getAppointmentByUser(@PathVariable("userId") long userId){
+    public ResponseEntity<List<AppointmentDto>> getAppointmentByUser(@PathVariable("userId") long userId) {
         return ResponseEntity.ok().body(appointmentService.getAppointmentsByUser(userId));
     }
 
     @GetMapping("/appointment/{appointmentId}/accept")
-    public ResponseEntity<AppointmentDto> changeAppointmentStatus(@RequestParam("status") Status status, @PathVariable("appointmentId") long appointmentId){
+    public ResponseEntity<AppointmentDto> changeAppointmentStatus(@RequestParam("status") Status status, @PathVariable("appointmentId") long appointmentId) {
         return ResponseEntity.ok().body(appointmentService.changeAppointmentStatus(appointmentId, status));
     }
 
     @GetMapping("/appointment/owner/{ownerId}")
-    public ResponseEntity<List<AppointmentDto>> getAppointmentsByOwner(@PathVariable("ownerId") long ownerId){
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByOwner(@PathVariable("ownerId") long ownerId) {
         return ResponseEntity.ok().body(appointmentService.getAppointmentsByOwner(ownerId));
     }
 }

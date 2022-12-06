@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface TransactionService {
     TransactionDto acceptPayment(String appointmentUuid, TransactionDto transactionDto);
+
     List<TransactionDto> getTransactions();
 
     List<TransactionDto> getTransactionsByStatus(Status status);

@@ -19,6 +19,6 @@ public interface AppUserRepo extends JpaRepository<AppUser, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE users a " +
-        "SET a.enabled = TRUE WHERE a.email = ?1")
+            "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableAppUser(String email);
 }

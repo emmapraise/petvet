@@ -46,25 +46,25 @@ public class VetServiceImpl implements VetService {
     @Override
     public VetDto getVet(long vetId) {
         log.info("Get Vet with this id {}", vetId);
-        return mapToDto(vetRepo.findById(vetId).orElseThrow(()-> new IllegalStateException("Vet with the id dont exist")));
+        return mapToDto(vetRepo.findById(vetId).orElseThrow(() -> new IllegalStateException("Vet with the id dont exist")));
     }
 
     @Override
     public VetDto saveVet(VetDto vetDto, MultipartFile... files) throws Exception {
         log.info("Saving new vet");
         AppUser appUser = registrationService.register(new RegistrationRequest(
-                vetDto.getFirstName(), vetDto.getLastName(),
+                vetDto.getId(), vetDto.getFirstName(), vetDto.getLastName(),
                 vetDto.getEmail(), vetDto.getPhone(), vetDto.getPassword(), vetDto.getRole()));
         Vet vet = mapToEntity(vetDto);
         vet.setUser(appUser);
         if (files[0] != null) {
             log.info("Uploading Cover image {}", files[0]);
-            Attach coverImage=  attachService.upload(files[0]);
+            Attach coverImage = attachService.upload(files[0]);
             vet.setCoverImage(coverImage);
         }
         if (files[1] != null) {
             log.info("Uploading Logo {}", files[1]);
-            Attach logo=  attachService.upload(files[1]);
+            Attach logo = attachService.upload(files[1]);
             vet.setLogo(logo);
         }
         if (files[2] != null) {
@@ -76,10 +76,10 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
-    public void addSpecialtyToVet(long vetId, long specialtyId){
+    public void addSpecialtyToVet(long vetId, long specialtyId) {
         log.info("Add specialities to vet clinic ");
-        Vet vet = vetRepo.findById(vetId).orElseThrow(()-> new IllegalStateException("No vet Found"));
-        Specialty specialty = specialtyRepo.findById(specialtyId).orElseThrow(()-> new IllegalStateException("No Speciality found"));
+        Vet vet = vetRepo.findById(vetId).orElseThrow(() -> new IllegalStateException("No vet Found"));
+        Specialty specialty = specialtyRepo.findById(specialtyId).orElseThrow(() -> new IllegalStateException("No Speciality found"));
         vet.getSpecialties().add(specialty);
     }
 

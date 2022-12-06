@@ -21,25 +21,24 @@ import java.util.UUID;
 public class RegistrationServiceImpl implements RegistrationService {
     private final EmailValidator emailValidator;
     private final AppUserService appUserService;
-
     private final EmailSenderService emailSenderService;
-
     private final ConfirmationTokenService confirmationTokenService;
+
     @Override
     public AppUser register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
-        if (!isValidEmail){
+        if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
 
-        AppUser appUser =  appUserService.signUpUser(
+        AppUser appUser = appUserService.signUpUser(
                 new AppUser(
                         request.getFirstName(),
                         request.getLastName(),
                         request.getEmail(),
                         request.getPassword(),
                         request.getPhone(),
-                        request.getRole()
+                        request.getRoles()
                 )
         );
         String token = UUID.randomUUID().toString();
@@ -59,13 +58,13 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Transactional
     public String confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenService.getToken(token)
-                .orElseThrow(()-> new IllegalStateException("token not found"));
-        if (confirmationToken.getConfirmedAt() != null){
+                .orElseThrow(() -> new IllegalStateException("token not found"));
+        if (confirmationToken.getConfirmedAt() != null) {
             throw new IllegalStateException("email already confirmed");
         }
         LocalDateTime expiredAt = confirmationToken.getExpiredAt();
 
-        if (expiredAt.isBefore(LocalDateTime.now())){
+        if (expiredAt.isBefore(LocalDateTime.now())) {
             throw new IllegalStateException("token expired");
         }
 
@@ -73,6 +72,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         appUserService.enableAppUser(confirmationToken.getAppUser().getEmail());
         return "confirmed";
     }
+
     private String buildEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +

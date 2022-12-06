@@ -44,7 +44,7 @@ public class Vet extends BaseEntity {
 
     @OneToOne
     private Attach document;
-    
+
     private Boolean isApproved = false;
 
     @ManyToMany(fetch = FetchType.EAGER)

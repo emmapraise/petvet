@@ -16,17 +16,17 @@ public class SpecialtyController {
     public final SpecialtyService specialtyService;
 
     @GetMapping("/specialty/all")
-    public ResponseEntity<List<Specialty>> getSpecialites(){
+    public ResponseEntity<List<Specialty>> getSpecialites() {
         return ResponseEntity.ok().body(specialtyService.getSpecialities());
     }
 
     @PostMapping("/specialty")
-    public ResponseEntity<Specialty> addSpecialty(@RequestBody Specialty specialty){
+    public ResponseEntity<Specialty> addSpecialty(@RequestBody Specialty specialty) {
         return ResponseEntity.ok().body(specialtyService.addSpecialty(specialty));
     }
 
     @DeleteMapping("/specialty/{specialtyId}")
-    public ResponseEntity<String> deleteSpecialty(@PathVariable("specialtyId") long specialtyId){
+    public ResponseEntity<String> deleteSpecialty(@PathVariable("specialtyId") long specialtyId) {
         return ResponseEntity.ok().body(specialtyService.deleteSpeciality(specialtyId));
     }
 }

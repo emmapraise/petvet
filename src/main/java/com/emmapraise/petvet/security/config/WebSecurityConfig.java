@@ -1,6 +1,7 @@
 package com.emmapraise.petvet.security.config;
 
 //import com.emmapraise.petvet.security.PasswordEncoder;
+
 import com.emmapraise.petvet.service.AppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtAuthenticationFilter();
     }
 
-//    private final BCryptPasswordEncoder passwordEncoder;
+    //    private final BCryptPasswordEncoder passwordEncoder;
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -89,7 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler(){
+    public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler() {
         SavedRequestAwareAuthenticationSuccessHandler handler = new SavedRequestAwareAuthenticationSuccessHandler();
         handler.setTargetUrlParameter("/api/user");
         return handler;

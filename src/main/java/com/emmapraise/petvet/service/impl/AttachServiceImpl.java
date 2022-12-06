@@ -20,10 +20,10 @@ public class AttachServiceImpl implements AttachService {
     private final AttachRepo attachRepo;
 
     @Override
-    public Attach upload(MultipartFile file) throws Exception{
+    public Attach upload(MultipartFile file) throws Exception {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {
-            if (fileName.contains("..")){
+            if (fileName.contains("..")) {
                 throw new Exception("Filename contains invalid sequence " + fileName);
             }
             String path = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -32,7 +32,7 @@ public class AttachServiceImpl implements AttachService {
                     .toUriString();
             Attach attach = new Attach(fileName, path, file.getContentType(), file.getBytes());
             return attachRepo.save(attach);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("Could not save file " + fileName);
         }
     }

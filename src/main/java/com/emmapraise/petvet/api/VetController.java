@@ -30,11 +30,11 @@ public class VetController {
                                           @RequestParam("logo") MultipartFile logo,
                                           @RequestParam("document") MultipartFile document,
                                           @ModelAttribute("vetDto") VetDto vetDto, BindingResult result) throws Exception {
-        return ResponseEntity.ok().body(vetService.saveVet(vetDto,  coverImage, logo, document));
+        return ResponseEntity.ok().body(vetService.saveVet(vetDto, coverImage, logo, document));
     }
 
     @PostMapping("/vet/specialtyToVet")
-    public ResponseEntity<?> addSpecialtiesToVet(@RequestBody SpecialityToVetForm form ){
+    public ResponseEntity<?> addSpecialtiesToVet(@RequestBody SpecialityToVetForm form) {
         vetService.addSpecialtyToVet(form.getVetId(), form.getSpecialtyId());
         return ResponseEntity.ok().build();
     }

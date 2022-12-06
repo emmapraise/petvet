@@ -11,10 +11,10 @@ import lombok.Setter;
 public class JWTAuthResponse {
     private String accessToken;
     private String tokenType = "Bearer";
-    private AppUser appUser;
+    private RegistrationRequest user;
 
-    public JWTAuthResponse(String accessToken, AppUser appUser) {
+    public JWTAuthResponse(String accessToken, RegistrationRequest user) {
         this.accessToken = accessToken;
-        this.appUser = appUser;
+        this.user = user;
     }
 }
