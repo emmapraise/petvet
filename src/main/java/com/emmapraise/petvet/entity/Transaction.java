@@ -13,11 +13,14 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Table(name = "transactions")
-public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private TransactionStatus status = TransactionStatus.PENDING;
+public class Transaction extends BaseEntity {
+    private Double price;
+
     @Column(unique = true)
     private String ref;
+
+    @OneToOne
+    private Appointment appointment;
+
+    private Status status = Status.PENDING;
 }

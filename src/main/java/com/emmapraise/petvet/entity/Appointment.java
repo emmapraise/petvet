@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,18 +15,16 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Appointment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Appointment extends BaseEntity {
     @Column(unique = true)
     private String uuid = UUID.randomUUID().toString();
 
     @ManyToOne()
-    private AppUser client;
+    private Pet pet;
 
     @ManyToOne()
-    private AppUser clinic;
+    private Vet vet;
     private Date date;
-    private Double price;
+
+    private Status status = Status.PENDING;
 }
